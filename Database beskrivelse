@@ -1,0 +1,27 @@
+DB:     MeOSMain
+  Table:  oEvent
+         id          id på event
+         NameID      navn på tabel med detaljer om dette event
+
+DB:     <NameId>
+  Table:  oEvent indeholder oplysninger om løbet
+          id          id på det valgte løb
+          ZeroTime    Løbets nultid
+
+  Table:  oRunner indeholder oplysninger om løberen
+          CardNo      Nummer på SI
+          StartTime   Antal sekunder efter nultid
+          FinishTime  Antal sekunder efter nultid
+          Status      Status på løberen
+                      0 = OK
+                      4 = UDGÅET
+                      ...
+
+  Table:  oPunch indeholder stemplinger der kommer ind via radio
+          CardNo      Nummer på SI
+          Type        Typen der er stemplet altså nummer på enhed
+                      =3  CHECK
+                      >3  MÅL
+                      >31 POST
+
+          NB: Kontroller hvad der sker når det er en post der er radio
