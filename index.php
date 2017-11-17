@@ -8,17 +8,23 @@
   </head>
 
   <?php
-    //Udregning af måltid (Oscar B.)
-    $zero = 54000;
-    $start = 67500-$zero;
-    $finish = 16164;
+    //Kald funktions fil
+    include "function.php";
 
+    //Udregning af måltid (Oscar B.)
+
+    //Nultid i Meos
+    $zero = 54000;
+    //Start tid for løber
+    $start = 67500-$zero;
+    //Radio stempling på mål for løber
+    $finish = 16164;
+    //Løbstid for løber i sek
     $timeint = ($finish - $start);
-    $timereal = gmdate("H:i:s", $timeint);
    ?>
 
   <body>
     <h1>Liveresultater</h1>
-    <?php echo "Din tid er $timereal"; ?>
+    <?php echo "Din tid er ". timeformat($timeint); ?>
   </body>
 </html>
