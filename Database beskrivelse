@@ -8,8 +8,13 @@ DB:     <NameId>
           id          id på det valgte løb
           ZeroTime    Løbets nultid
 
+  Table:  oClasse indeholder oplysninger om klasser
+          id          id på klassen
+          Name        Navn på klassen
+
   Table:  oRunner indeholder oplysninger om løberen
           CardNo      Nummer på SI
+          Class       Løberens klasse
           StartTime   Antal sekunder efter nultid
           FinishTime  Antal sekunder efter nultid
           Status      Status på løberen
