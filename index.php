@@ -20,7 +20,7 @@
     //Radio stempling på mål for løber
     $finish = 16164;
     //Løbstid for løber i sek
-    $timeint = ($finish - $start);
+    $timeint = timeintberegn($finish, $start);
    ?>
 
   <body>
