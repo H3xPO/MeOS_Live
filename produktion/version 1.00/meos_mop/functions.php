@@ -4,7 +4,7 @@
 
   Copyright 2013 Melin Software HB
 
-
+  
 
   Licensed under the Apache License, Version 2.0 (the "License");
 
@@ -12,11 +12,11 @@
 
   You may obtain a copy of the License at
 
-
+  
 
       http://www.apache.org/licenses/LICENSE-2.0
 
-
+  
 
   Unless required by applicable law or agreed to in writing, software
 
@@ -30,10 +30,11 @@
 
   */
 
+  
+
+include_once("config_da_usbw.php");
 
 
-/* Change this to your produntion env. */
-include_once("/MeOS_Live_Config/config_da.php");
 
 /** Connecto to MySQL */
 
@@ -55,7 +56,7 @@ function ConnectToDB() {
 
     die ("Can't use ". MYSQL_HOSTNAME. ' : ' . mysql_error());
 
-  }
+  }    
 
   return $link;
 
@@ -71,7 +72,7 @@ function query($sql) {
 
    die('Invalid query: ' . mysql_error());
 
- }
+ } 
 
  return $result;
 
@@ -83,7 +84,7 @@ function getStatusString($status) {
 
   switch($status) {
 
-    case 0:
+    case 0: 
 
       return "--"; //Unknown, running?
 
@@ -107,7 +108,7 @@ function getStatusString($status) {
 
       return "DQ"; // Disqualified
 
-    case 6:
+    case 6:      
 
       return "OT"; // Overtime
 
@@ -123,9 +124,9 @@ function getStatusString($status) {
 
 function calculateResult($res) {
 
-  $out = array();
+  $out = array();  
 
-
+  
 
   $place = 0;
 
@@ -147,7 +148,7 @@ function calculateResult($res) {
 
       $out[$count]['name'] .= " / " . $r['name'];
 
-      continue;
+      continue; 
 
     }
 
@@ -155,7 +156,7 @@ function calculateResult($res) {
 
       $lastTeam = $r['id'];
 
-
+      
 
     $count++;
 
@@ -171,20 +172,20 @@ function calculateResult($res) {
 
       $lastTime = $t;
 
-    }
+    }        
 
     $row = array();
 
-
+    
     if ($r['status'] == 1) {
 
       $row['place'] = $place.".";
 
-      $row['name'] = $r['name'];
+      $row['name'] = $r['name'];      
 
       $row['team'] = $r['team'];
 
-
+    
 
       if ($t > 0)
 
@@ -194,7 +195,7 @@ function calculateResult($res) {
 
         $row['time'] = "OK"; // No timing
 
-
+        
 
       $after = $t - $bestTime;
 
@@ -204,7 +205,7 @@ function calculateResult($res) {
 
       elseif ($after > 0)
 
-        $row['after'] = sprintf("+%d:%02d", ($after/60)%60, $after%60);
+        $row['after'] = sprintf("+%d:%02d", ($after/60)%60, $after%60);        
 
       else
 
@@ -216,7 +217,7 @@ function calculateResult($res) {
 
       $row['place'] = "";
 
-      $row['name'] = $r['name'];
+      $row['name'] = $r['name'];      
 
       $row['team'] = $r['team'];
 
@@ -228,9 +229,9 @@ function calculateResult($res) {
 
     }
 
+    
 
-
-
+          
 
     if (isset($r['tottime'])) {
 
@@ -238,7 +239,7 @@ function calculateResult($res) {
 
       if (($r['totstat'] == 1) && ($r['status'] == 1)) {
 
-        $tt = $r['tottime']/10;
+        $tt = $r['tottime']/10;          
 
         if ($tt > 0)
 
@@ -252,11 +253,11 @@ function calculateResult($res) {
 
       else {
 
-        $row['tottime'] = getStatusString($r['totstat']);
+        $row['tottime'] = getStatusString($r['totstat']); 
 
       }
 
-
+      
 
       if (($r['totstat'] == 1) && ($r['status'] == 1))
 
@@ -268,7 +269,7 @@ function calculateResult($res) {
 
     }
 
-
+          
 
 	$row['id'] = $lastTeam;
 
@@ -276,7 +277,7 @@ function calculateResult($res) {
 
   }
 
-
+  
 
   if ($hasTotal) {
 
@@ -288,7 +289,7 @@ function calculateResult($res) {
 
     $bestTime = -1;
 
-
+    
 
     for($k = 0; $k<$count; $k++) {
 
@@ -312,11 +313,11 @@ function calculateResult($res) {
 
           $out[$k]['time'].=" (".substr($out[$k]['place'], 0, -1).")";
 
-
+        
 
         $out[$k]['place'] = $place.".";
 
-
+        
 
         $after = ($t - $bestTime)/10;
 
@@ -326,7 +327,7 @@ function calculateResult($res) {
 
         elseif ($after > 0)
 
-          $out[$k]['totafter'] = sprintf("+%d:%02d", ($after/60)%60, $after%60);
+          $out[$k]['totafter'] = sprintf("+%d:%02d", ($after/60)%60, $after%60);        
 
         else
 
@@ -346,7 +347,7 @@ function calculateResult($res) {
 
   }
 
-
+  
 
   return $out;
 
@@ -364,7 +365,7 @@ function formatResult($result) {
 
   print "<table>";
 
-  foreach($result as $row) {
+  foreach($result as $row) {            
 
     if ($head == false) {
 
@@ -373,22 +374,22 @@ function formatResult($result) {
       foreach($row as $key => $cell) {
 
 		if ($key != 'id') {
-            print "<th>".$lang[$key]."</th>\n";
+            print "<th>".$lang[$key]."</th>\n";  
         }
       }
 
       print "</tr>";
 
-      $head = true;
+      $head = true; 
 
-    }
+    }      
 
     print "<tr>";
 
     foreach($row as $key => $cell) {
 
     	if ($key != 'id') {
-          print "<td>$cell</td>";
+          print "<td>$cell</td>";  
         }
     }
 
@@ -414,15 +415,15 @@ function selectRadio($cls) {
 
          "AND mopClassControl.id='$cls' AND mopClassControl.ctrl=mopControl.id ORDER BY leg ASC, ord ASC";
 
+         
 
-
-
+  
 
   $res = mysql_query($sql);
 
   $radios = mysql_num_rows($res);
 
-
+  
 
   if ($radios > 0) {
 
@@ -436,23 +437,23 @@ function selectRadio($cls) {
 
     while ($r = mysql_fetch_array($res)) {
 
-      print '<a href="'."$PHP_SELF?cmp=$cmpId&cls=$cls&radio=$r[ctrl]".'">'.$r['name']."</a><br/>\n";
+      print '<a href="'."$PHP_SELF?cmp=$cmpId&cls=$cls&radio=$r[ctrl]".'">'.$r['name']."</a><br/>\n";      
 
-    }
+    } 
 
-    print '<a href="'."$PHP_SELF?cmp=$cmpId&cls=$cls&radio=finish".'">'.'Finish'."</a><br/>\n";
+    print '<a href="'."$PHP_SELF?cmp=$cmpId&cls=$cls&radio=finish".'">'.'Finish'."</a><br/>\n";      
 
   }
 
   else {
 
-    // Only finish
+    // Only finish   
 
     $radio = 'finish';
 
   }
 
-  return $radio;
+  return $radio; 
 
 }
 
@@ -470,9 +471,9 @@ function selectLegRadio($cls, $leg, $ord) {
 
          "AND mopClassControl.id='$cls' AND mopClassControl.ctrl=mopControl.id AND leg='$leg' AND ord='$ord'";
 
+         
 
-
-
+  
 
   $res = mysql_query($sql);
 
@@ -482,21 +483,21 @@ function selectLegRadio($cls, $leg, $ord) {
 
   if ($radios > 0) {
 
-
+    
 
     while ($r = mysql_fetch_array($res)) {
 
-      print '<a href="'."$PHP_SELF?cmp=$cmpId&cls=$cls&leg=$leg&ord=$ord&radio=$r[ctrl]".'">'.$r['name']."</a>; \n";
+      print '<a href="'."$PHP_SELF?cmp=$cmpId&cls=$cls&leg=$leg&ord=$ord&radio=$r[ctrl]".'">'.$r['name']."</a>; \n";      
 
-    }
+    } 
 
-
+     
 
   }
 
   else {
 
-    // Only finish
+    // Only finish   
 
     //$radio = 'finish';
 
@@ -504,7 +505,7 @@ function selectLegRadio($cls, $leg, $ord) {
 
   print '<a href="'."$PHP_SELF?cmp=$cmpId&cls=$cls&leg=$leg&ord=$ord&radio=finish".'">'.'Finish'."</a><br/>\n";
 
-  return $radio;
+  return $radio; 
 
 }
 
@@ -518,7 +519,7 @@ function updateTable($table, $cid, $id, $sqlupdate) {
 
   $res = mysql_query("SELECT id FROM `$table` WHERE $ifc");
 
-
+  
 
   if (mysql_num_rows($res) > 0) {
 
@@ -528,11 +529,11 @@ function updateTable($table, $cid, $id, $sqlupdate) {
 
   else {
 
-    $sql = "INSERT INTO `$table` SET cid='$cid', id='$id', $sqlupdate";
+    $sql = "INSERT INTO `$table` SET cid='$cid', id='$id', $sqlupdate";  
 
   }
 
-
+  
 
   //print "$sql\n";
 
@@ -546,11 +547,11 @@ function updateTable($table, $cid, $id, $sqlupdate) {
 
 function updateLinkTable($table, $cid, $id, $fieldName, $encoded) {
 
-  $sql = "DELETE FROM $table WHERE cid='$cid' AND id='$id'";
+  $sql = "DELETE FROM $table WHERE cid='$cid' AND id='$id'";  
 
   mysql_query($sql);
 
-  $legNumber = 1;
+  $legNumber = 1;  
 
   $legs = explode(";", $encoded);
 
@@ -560,7 +561,7 @@ function updateLinkTable($table, $cid, $id, $fieldName, $encoded) {
 
     foreach($runners as $key => $runner) {
 
-      $sql = "INSERT INTO $table SET cid='$cid', id='$id', leg=$legNumber, ord=$key, $fieldName=$runner";
+      $sql = "INSERT INTO $table SET cid='$cid', id='$id', leg=$legNumber, ord=$key, $fieldName=$runner"; 
 
       //print "$sql \n";
 
@@ -570,7 +571,7 @@ function updateLinkTable($table, $cid, $id, $fieldName, $encoded) {
 
     $legNumber++;
 
-  }
+  }  
 
 }
 
@@ -584,7 +585,7 @@ function clearCompetition($cid) {
 
                       "mopTeam", "mopTeamMember", "mopClassControl", "mopRadio");
 
-
+                      
 
    foreach($tables as $table) {
 
@@ -592,7 +593,7 @@ function clearCompetition($cid) {
 
      mysql_query($sql);
 
-   }
+   } 
 
 }
 
@@ -610,7 +611,7 @@ function processCompetition($cid, $cmp) {
 
   $homepage = mysql_real_escape_string($cmp['homepage']);
 
-
+  
 
   $sqlupdate = "name='$name', date='$date', organizer='$organizer', homepage='$homepage'";
 
@@ -650,13 +651,13 @@ function processClass($cid, $cls) {
 
   updateTable("mopClass", $cid, $id, $sqlupdate);
 
-
+    
 
   if (isset($cls['radio'])) {
 
     $radio = mysql_real_escape_string($cls['radio']);
 
-    updateLinkTable("mopClassControl", $cid, $id, "ctrl", $radio);
+    updateLinkTable("mopClassControl", $cid, $id, "ctrl", $radio);    
 
   }
 
@@ -688,7 +689,7 @@ function processCompetitor($cid, $cmp) {
 
   $id = mysql_real_escape_string($cmp['id']);
 
-
+  
 
   $name = mysql_real_escape_string($base);
 
@@ -702,9 +703,9 @@ function processCompetitor($cid, $cmp) {
 
   $rt = (int)$base['rt'];
 
+  
 
-
-
+  
 
   $sqlupdate = "name='$name', org=$org, cls=$cls, stat=$stat, st=$st, rt=$rt";
 
@@ -724,7 +725,7 @@ function processCompetitor($cid, $cmp) {
 
 
 
-  updateTable("mopCompetitor", $cid, $id, $sqlupdate);
+  updateTable("mopCompetitor", $cid, $id, $sqlupdate);  
 
   if (isset($cmp->radio)) {
 
@@ -748,7 +749,7 @@ function processCompetitor($cid, $cmp) {
 
     }
 
-  }
+  }  
 
 }
 
@@ -760,9 +761,9 @@ function processTeam($cid, $team) {
 
   $base = $team->base;
 
-  $id = mysql_real_escape_string($team['id']);
+  $id = mysql_real_escape_string($team['id']);  
 
-
+  
 
   $name = mysql_real_escape_string($base);
 
@@ -776,13 +777,13 @@ function processTeam($cid, $team) {
 
   $rt = (int)$base['rt'];
 
-
+  
 
   $sqlupdate = "name='$name', org=$org, cls=$cls, stat=$stat, st=$st, rt=$rt";
 
   updateTable("mopTeam", $cid, $id, $sqlupdate);
 
-
+  
 
   if (isset($team->r)) {
 
@@ -808,7 +809,7 @@ function returnStatus($stat) {
 
 function formatJSON($sqldata) {
 
-  if($sqldata instanceof ArrayIterator) {
+  if($sqldata instanceof ArrayIterator) {  
     $rows = $sqldata;
   }
   else {
@@ -821,7 +822,7 @@ function formatJSON($sqldata) {
 
       }
 
-
+    
       $rows[] = $cells;
     }
   }
@@ -831,27 +832,27 @@ function formatJSON($sqldata) {
 function formatJSON2($sqldata, $head) {
     global $lang;
 
-
+	
     $rows = array();
     foreach($sqldata as $r) {
-
+      
       if ($head){
 
         $cells = array();
         foreach($r as $key => $cell) {
 			if ($key != 'id')
-          		$cells[] = $lang[$key];
+          		$cells[] = $lang[$key];  
         }
         $head = false;
 		$rows[] = $cells;
-      }
+      } 
       $cells = array();
       foreach($r as $key => $c) {
 		if ($key != 'id')
 	        $cells[] = $c;
       }
 
-
+         	
       $rows[] = $cells;
     }
 
@@ -864,7 +865,7 @@ function getArg($param) {
 	if (isset($_GET[$param])) {
 		return $_GET[$param];
 	}
-
+	
 	return '';
 }
 
