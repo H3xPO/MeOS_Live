@@ -32,9 +32,8 @@
 
 
 
+/* Change this to your produntion env. */
 include_once("/MeOS_Live_Config/config_da.php");
-
-
 
 /** Connecto to MySQL */
 
