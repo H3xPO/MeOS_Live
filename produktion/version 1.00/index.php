@@ -30,7 +30,7 @@
 		<div id="content">
 			<div id="contentleft">
 
-			<?php 
+			<?php
 				$ip = gethostbyname(gethostname());
 				/* $ip = '192.168.1.100'; */
 			?>
@@ -41,40 +41,40 @@
 
 				<table cellpadding="5" style="border:2px solid white;">
 					<tr style="border:2px solid white;">
-						<td style="border:2px solid white;"><button type="button" OnClick="window.location='/info/index.html';">Information</button></td>
+						<td style="border:2px solid white;"><button type="button" OnClick="window.location='./info/index.html';">Information</button></td>
 						<td style="border:2px solid white;">Opdater filen /info/index.html med de oplysninger der skal vises p&aring; sk&aelig;rmen</td>
 					</tr>
 					<tr style="border:2px solid white;">
-						<td style="border:2px solid white;"><button type="button" OnClick="window.location='/resultater/rolling.htm';">Rullende</button></td>
+						<td style="border:2px solid white;"><button type="button" OnClick="window.location='./resultater/rolling.htm';">Rullende</button></td>
 						<td style="border:2px solid white;">Sk&aelig;rmen opdeles i 2 kolonner, der kan vise forskellige klasse startlister eller resultater</td>
-					</tr>					
+					</tr>
 					<tr style="border:2px solid white;">
-						<td style="border:2px solid white;"><button type="button" OnClick="window.location='/resultater/livestartlist.html';">Startliste</button></td>
+						<td style="border:2px solid white;"><button type="button" OnClick="window.location='./resultater/livestartlist.html';">Startliste</button></td>
 						<td style="border:2px solid white;">Viser en udvalgt klasse, der kan skiftes klasse p&aring; sk&aelig;rmen</td>
-					</tr>					
+					</tr>
 					<tr style="border:2px solid white;">
-						<td style="border:2px solid white;"><button type="button" OnClick="window.location='/resultater/liveresultat.html';">Resultater</button></td>
+						<td style="border:2px solid white;"><button type="button" OnClick="window.location='./resultater/liveresultat.html';">Resultater</button></td>
 						<td style="border:2px solid white;">Viser en udvalgt post for een klasse, der kan skiftes klasse p&aring; sk&aelig;rmen</td>
-					</tr>					
+					</tr>
 					<tr style="border:2px solid white;">
-						<td style="border:2px solid white;"><button type="button" OnClick="window.location='/resultater/relaywarn.php';">Stafet, formelding</button></td>
+						<td style="border:2px solid white;"><button type="button" OnClick="window.location='./resultater/relaywarn.php';">Stafet, formelding</button></td>
 						<td style="border:2px solid white;">Viser l&oslash;bere der passerer en given radiopost (formelding)</td>
-					</tr>					
+					</tr>
 					<tr style="border:2px solid white;">
-						<td style="border:2px solid white;"><button type="button" OnClick="window.location='/divmatch/html/overview/overview.html';">Divisionsmatch - oversigt</button></td>
+						<td style="border:2px solid white;"><button type="button" OnClick="window.location='./divmatch/html/overview/overview.html';">Divisionsmatch - oversigt</button></td>
 						<td style="border:2px solid white;">Sk&aelig;rmen opdeles i 3 kolonner, der viser det samlede resultat for hver af 3 matcher</td>
-					</tr>					
+					</tr>
 					<tr style="border:2px solid white;">
-						<td style="border:2px solid white;"><button type="button" OnClick="window.location='/divmatch/html/resultat/resultat1.html';">Divisionsmatch - resultat (match 1)</button></td>
+						<td style="border:2px solid white;"><button type="button" OnClick="window.location='./divmatch/html/resultat/resultat1.html';">Divisionsmatch - resultat (match 1)</button></td>
 						<td style="border:2px solid white;">Sk&aelig;rmen viser alle resultater fra een match</td>
-					</tr>					
+					</tr>
 					<tr style="border:2px solid white;">
-						<td style="border:2px solid white;"><button type="button" OnClick="window.location='/divmatch/html/resultat/resultat2.html';">Divisionsmatch - resultat (match 2)</button></td>
+						<td style="border:2px solid white;"><button type="button" OnClick="window.location='./divmatch/html/resultat/resultat2.html';">Divisionsmatch - resultat (match 2)</button></td>
 						<td style="border:2px solid white;">Sk&aelig;rmen viser alle resultater fra een match</td>
-					</tr>										
+					</tr>
 				</table>
 
-			</p>			
+			</p>
 			<p>
 			<h1>USBWebserver V8.6</h1>
 			<p>
@@ -93,12 +93,11 @@
 				phpinfo();
 				$i = ob_get_contents();
 				ob_end_clean();
-				
+
 				echo ( str_replace ( "module_Zend Optimizer", "module_Zend_Optimizer", preg_replace ( '%^.*<body>(.*)</body>.*$%ms', '$1', $i ) ) ) ;
 
 			?>
-			
+
 			</div>
 			<a href="#" id="banner"></a>
 			<br style="clear:both">
-		
