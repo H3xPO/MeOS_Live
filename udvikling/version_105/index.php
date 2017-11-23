@@ -79,13 +79,19 @@
 			<?php
 
 				// Test config
-				set_include_path($_SERVER["DOCUMENT_ROOT"].'/MeOS_Live_Config');
-				include("config_da.php");
-				echo "Læser MySQL konfiguration fra: " . $_SERVER["DOCUMENT_ROOT"] . '/MeOS_Live_Config/config_da.php<br>';
+				include_once('meos_mop/config_da.php');
+				print "Læser MySQL konfiguration fra: " . $_SERVER["DOCUMENT_ROOT"] . 'config_da.php';
 				if (strlen(MYSQL_HOSTNAME)>1) {
-					echo "MySQL database server=".MYSQL_HOSTNAME;
+					print "<br>MySQL database server=".MYSQL_HOSTNAME;
 				} else {
-					echo "FEJL: Kan ikke læse navn på MySQL database server!";
+					print "<br><b>FEJL:</b> Kan ikke læse navn på MySQL database server!";
+				}
+
+				// Er MySQl og webserver samme server
+				if (MYSQL_HOSTNAME<>$ip) {
+					print "<br><b>ADVARSEL:</b> MySQL databasen og webserveren køre ikke på samme maskine!";
+					print "<br>   MySQL database=".MYSQL_HOSTNAME;
+					print "<br>   Webserver =".$ip;
 				}
 
 				ob_start();

@@ -32,9 +32,8 @@
 
 
 // Denne linie fjernes i produktion
-//set_include_path($_SERVER["DOCUMENT_ROOT"].'/MeOS_Live_Config');
 
-include_once("config_da.php");
+include_once('config_da.php');
 
 
 /** Connecto to MySQL */
@@ -519,8 +518,6 @@ function updateTable($table, $cid, $id, $sqlupdate) {
   $ifc = "cid='$cid' AND id='$id'";
 
   $res = mysql_query("SELECT id FROM `$table` WHERE $ifc");
-
-
 
   if (mysql_num_rows($res) > 0) {
 

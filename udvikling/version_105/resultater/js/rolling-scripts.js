@@ -29,14 +29,14 @@ function setup()
 	    	initializeClassSelector();
 	    }
 	});
-	
+
 	$("#class-selector").change(function () {
 		if ($("select#class-selector").prop('selectedIndex') >= 0)
 		{
 			cls = $("#class-selector").prop('value');
 		}
 	});
-	
+
     setTimeout("initializeSelectors()", 1000);
 }
 
@@ -68,7 +68,7 @@ function initializeCompetitionSelector() {
 		        option.attr('value', competitionInfo[2]).text(competitionInfo[1] + " : " + competitionInfo[0]);
 		        $('#competition-selector').append(option);
 		    });
-		
+
 			/* select the first */
 			if (competitionsList.length >0) {
 				$("select#competition-selector").prop('selectedIndex', 0);
@@ -100,9 +100,9 @@ function initializeClassSelector() {
 		        var option="<nobr><input type=checkbox name='cls[]' value='"+classInfo[1]+"'>"+classInfo[0]+"</input></nobr>";
 		        if (idx>0) { option="<br class='removeiffirst removeiflast'/>"+option;}
 		        $('#class-selector').append(option);
-		    });		
+		    });
         	}
-        );        
+        );
 
     Columnize();
 }
@@ -110,7 +110,7 @@ function initializeClassSelector() {
 function loadFinishResult(action, cmp, cls, leg, radio, multiple) {
 
 	listResultUrl  = baseUrl + "action=classname&cmp=" + cmp + "&cls=" + cls;
-			
+
 	$.ajax({
         type: 'GET',
         url: listResultUrl,
@@ -124,7 +124,7 @@ function loadFinishResult(action, cmp, cls, leg, radio, multiple) {
 
 
 	listResultUrl  = baseUrl + "action=" + action + "&cmp=" + cmp + "&cls=" + cls + "&radio=" + radio + "&multiple=" + multiple + "&relayrolling=1";
-			
+
 	$.ajax({
         type: 'GET',
         url: listResultUrl,
@@ -151,32 +151,32 @@ function formatLi(cls, clsname) {
 function formatResult(cls, clsname, result) {
 
 	/* Finder antal kolonner */
-	head = false;	
+	head = false;
 	kol = 4;
-	$.each(result, 
+	$.each(result,
     	function (idx, val) {
     		if (head == false)
     		{
 				$.each(result[idx], function(jdx, cell){
 					kol=jdx;
-				}); 
+				});
     			head = true;
     		}
 		});
-		
+
 	head = false;
 
 	html = "<div id='" + cls + "'>";
 	html += "<h2>" + unescape(clsname) + "</h2>";
 	html += "<table style='table-layout:fixed;' class='table-striped table-condensed table-bordered' width='100%'>";
-	
-    $.each(result, 
+
+    $.each(result,
     	function (idx, val) {
-		
+
 			html += "<tr>"
     		if (head == false)
     		{
-				html += "<thead>" 
+				html += "<thead>"
 				$.each(result[idx], function(jdx, cell){
 					w="";
 					if (jdx==0)
@@ -198,23 +198,23 @@ function formatResult(cls, clsname, result) {
 					{
 						w=" width='12%'";
 					}
-					a = (jdx==1 || jdx == 2) ? 'text-align:left' : 'text-align:right';					
-					html += "<th style='"+ a +"' " + w + ">" + htmlEncode(cell) + "</th>";  
-				}); 
-				html += "</thead>" 
-				html += "<tbody>" 
+					a = (jdx==1 || jdx == 2) ? 'text-align:left' : 'text-align:right';
+					html += "<th style='"+ a +"' " + w + ">" + htmlEncode(cell) + "</th>";
+				});
+				html += "</thead>"
+				html += "<tbody>"
     			head = true;
     		}
     		else
     		{
-				$.each(result[idx], function(jdx, cell){						
-					a = (jdx==1 || jdx == 2) ? 'left' : 'right';	
+				$.each(result[idx], function(jdx, cell){
+					a = (jdx==1 || jdx == 2) ? 'left' : 'right';
 					html += "<td style='padding: 2px;' valign='top' align='"+ a +"'>" + htmlEncode(cell) + "</td>";
-				}); 
+				});
     		}
-			html += "</tr>"    		
+			html += "</tr>"
 		});
-	html += "</tbody>" 
+	html += "</tbody>"
 	html += "</table>";
 	html += "</div>";
 
