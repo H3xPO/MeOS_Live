@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <html lang="en">
-  
+
   <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UFT-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>FIF Hillerød Orientering - Live</title>
+	<title>FIF Hillerï¿½d Orientering - Live</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="js/bootstrap.min.js" rel="stylesheet"/>
-	
-	
+
+
 <!--[if lt IE 9]><script src="./docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -20,31 +20,32 @@
 	<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
 	<script type="text/javascript" src="js/rolling-scripts.js"></script>
 	<script type="text/javascript" src="js/jquery.columnizer.js"  charset="utf-8"></script>
-	<style>	
+	<style>
 		.wide { clear:both; }
 	</style>
 	<script>
 		cols=1;
 	</script>
 	</head>
-  
+
   <body onload="setup();">
 	<form class="form-horizontal" role="search" action="rolling_result.php" method="get">
 		V&aelig;lg type, l&oslash;b og klasse(r)
 		<div class="control-group">
 			<label class="control-label" for="action-selector">Liste</label>
-			<div class="controls">				
-		          <select id="action-selector" name="action" title="Typeøb" class="">
+			<div class="controls">
+		          <select id="action-selector" name="action" title="Type" class="">
+		          <option value="result_mid">Midlertidigt resultat</option>
 		          <option value="result">Resultat</option>
 		          <option value="start">Startliste</option>
-		          </select>		
+		          </select>
 		    </div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="competition-selector">L&oslash;b</label>
-			<div class="controls">				
-		          <select id="competition-selector" name="cmp" title="Løb" class=""></select>		
-		          Multi-event <input type="checkbox" value="x" name="multiple" title="Multi-event" class="">		
+			<div class="controls">
+		          <select id="competition-selector" name="cmp" title="Event" class=""></select>
+		          Multi-event <input type="checkbox" value="x" name="multiple" title="Multi-event" class="">
 		    </div>
 		</div>
 		<div class="control-group">

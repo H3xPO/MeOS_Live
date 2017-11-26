@@ -25,17 +25,17 @@
 	if (($act == "") || ($act=="comp")) {
 
 		/* get competitions */
-		
-		$sql = "SELECT name, date, cid FROM mopCompetition ORDER BY date DESC";     
+
+		$sql = "SELECT name, date, cid FROM mopCompetition ORDER BY date DESC";
 		$logsql = "$logsql \n ---- SQL --- $sql";
 		$res = mysql_query($sql);
-    
+
 		$output = formatJSON($res);
 	}
 	elseif (($act == "class") && ($cmp != "")) {
 
 		/* get classes in competition */
-		$sql = "SELECT name, id FROM mopClass WHERE cid = '$cmp' ORDER BY ord";     
+		$sql = "SELECT name, id FROM mopClass WHERE cid = '$cmp' ORDER BY ord";
 		$logsql = "$logsql \n ---- SQL --- $sql";
 		$res = mysql_query($sql);
 
@@ -44,7 +44,7 @@
 	elseif (($act == "classname") && ($cmp != "") && ($cls != "")) {
 
 		/* get classes in competition */
-		$sql = "SELECT name, id FROM mopClass WHERE cid = '$cmp' AND id='$cls'";     
+		$sql = "SELECT name, id FROM mopClass WHERE cid = '$cmp' AND id='$cls'";
 		$logsql = "$logsql \n ---- SQL --- $sql";
 		$res = mysql_query($sql);
 
@@ -74,7 +74,7 @@
 		$res = mysql_query($sql);
 
 		$output = formatJSON($res);
-		//$output = $sql;			   
+		//$output = $sql;
 	}
 	elseif (($act == "result") && ($cmp != "") && ($cls != "")) {
 
@@ -88,12 +88,12 @@
 
 		$ord=0;
     	if ($numlegs > 1) {
-			//Multiple legs, relay etc. 
+			//Multiple legs, relay etc.
 /*
 			for ($k = 1; $k <= $numlegs; $k++) {
 	        	$sql = "SELECT max(ord) FROM mopTeamMember tm, mopTeam t WHERE t.cls = '$cls' AND tm.leg=$k AND ".
 	            	   "tm.cid = '$cmp' AND t.cid = '$cmp' AND tm.id = t.id";
-	
+
 				$res = mysql_query($sql);
 	        	$r = mysql_fetch_array($res);
 	        	$numparallel = $r[0];
@@ -109,7 +109,7 @@
 			if ($leg == '') {
 				$leg = $numlegs;
 			}
-			
+
 			if ($radio!='') {
 				$lmin = ($relayrolling=="" ? $leg : 1);
 				$usedteams = array();
@@ -149,11 +149,11 @@
 							   "  AND team.cid = '$cmp' AND m.cid = '$cmp' AND cmp.cid = '$cmp'  AND radio.cid = '$cmp' ".
 							   "ORDER BY radio.rt ASC ";
 					}
-		
+
 					$logsql = "$logsql \n ---- SQL team $l --- $sql";
 					$res = mysql_query($sql);
 					$resx = calculateResult($res);
-					
+
 					if (count($usedteams)==0) {
 						# first set of teams in order
 						$results = $resx;
@@ -163,10 +163,10 @@
 					} else {
 						$plstart = count($usedteams);
 						foreach($resx as $r){
-							/* add lesser placed teams in orer without placing */
+							/* add lesser placed teams in order without placing */
 							if ($r['place'] != ''){
 								$r['place'] = $r['place'] + $plstart;
-							}		
+							}
 							$r['totafter'] = '';
 							$results[] = $r;
 							$usedteams[] = $r['id'];
@@ -176,47 +176,47 @@
 				if ($radio == 'finish') {
 					/* populate with runners */
 					/* place, name, team, time, after, tottime, totstat */
-					/* ["Pl.","Navn","Klub","Tid","&nbsp;","Samlet","&nbsp;"] */					
+					/* ["Pl.","Navn","Klub","Tid","&nbsp;","Samlet","&nbsp;"] */
 					/* ["Pl.","Tur", "Navn" "Klub (hold)", "Tur tid", "Tur efter", "Samlet tid", "Samlet efter"]*/
-					
+
 					$head = true;
 				    $rows = array();
 					foreach($results as $r) {
 						if ($head == true) {
 	    	    			$rrow = array();
-	    	    			
+
 		        			$rrow[] = 'place';
 		        			$rrow[] = 'team';
 		        			$rrow[] = 'time';
 		        			$rrow[] = 'after';
 		        			$rrow[] = 'tottime';
 		        			$rrow[] = 'totafter';
-				        			
-							$head = false;										
-						}	
-											
+
+							$head = false;
+						}
+
 						/* team details */
 	        			$rrow = array();
-	        			
+
 	        			$rrow['place'] = $r['place'];
 	        			$rrow['team'] = $r['team'];
 	        			$rrow['time'] = '';
 	        			$rrow['after'] = '';
 	        			$rrow['tottime'] = $r['tottime'];
 	        			$rrow['totafter'] = $r['totafter'];
-		        			
+
 						$rows[] = $rrow;
 
-						/* get runners */	
+						/* get runners */
 		      			$rrow = array();
-		      			
+
 		          		$sql = "SELECT t.id AS id, cmp.name AS name, t.name AS team, cmp.rt AS time, cmp.stat AS status, ".
 		                 	   "cmp.it+cmp.rt AS tottime, cmp.tstat AS totstat, tm.leg ".
 			                   "FROM mopTeamMember tm, mopCompetitor cmp, mopTeam t ".
 		                 	   "WHERE t.cls = '$cls' AND t.id = tm.id AND tm.rid = cmp.id ".
 		                       "AND t.cid = '$cmp' AND tm.cid = '$cmp' AND cmp.cid = '$cmp' AND t.stat>=0 ".
 		                       "AND tm.ord='$ord' AND t.id='".$r['id']."' AND tm.leg <= '$leg' ORDER BY tm.leg";
-		      			
+
 						$logsql = "$logsql \n ---- SQL runners --- $sql";
 						$res = mysql_query($sql);
 						$tottime = 0;
@@ -237,23 +237,23 @@
 									$tottime  = 0;
 								}
 							}
-		        			
+
 							if ($rr['status']==1) {
 								if ($tottime > 0)
 				        			$rrow['after'] = sprintf("%d:%02d:%02d", $tottime/3600, ($tottime/60)%60, $tottime%60);
 								else
 	        						$rrow['after'] = "--"; // No timing
-							} 
+							}
 							else {
 								$rrow['after'] = getStatusString($rr['status']);
-							}							
+							}
 
 							$rows[] = $rrow;
-		      			}			         	
+		      			}
 					}
-				
+
 					$results  = $rows;
-				}	        	
+				}
 			}
 	    }
 	    else {
@@ -272,7 +272,7 @@
     	                		   "FROM mopCompetitor cmp LEFT JOIN mopOrganization AS org ON cmp.org = org.id AND cmp.cid = org.cid ".
     		                   	   "WHERE cmp.cls = '$cls' ".
     		                       "AND cmp.cid = '$cmp' AND cmp.stat>0 ORDER BY cmp.stat, cmp.rt ASC, cmp.id";
-                        }    		                       
+                        }
 						$rname = $lang["finish"];
 					}
 					else {
@@ -288,12 +288,12 @@
 					}
 					$logsql = "$logsql \n ---- SQL --- $sql";
 					$res = mysql_query($sql);
-					$results = calculateResult($res);					
+					$results = calculateResult($res);
 				}
 			}
 		    else {
 		    	// Single leg (patrol etc)
-		    	$msg ="single leg";        
+		    	$msg ="single leg";
 		 		if ($radio!='') {
 					if ($radio == 'finish') {
 						$sql = "SELECT t.id AS id, cmp.name AS name, t.name AS team, t.rt AS time, t.stat AS status ".
@@ -303,7 +303,7 @@
 							   "ORDER BY t.stat, t.rt ASC, t.id";
 						$rname = $lang["finish"];
 					}
-					else {		
+					else {
 						$sql = "SELECT team.id AS id, cmp.name AS name, team.name AS team, radio.rt AS time, 1 AS status ".
 							   "FROM mopRadio AS radio, mopTeamMember AS m, mopTeam AS team, mopCompetitor AS cmp ".
 							   "WHERE radio.ctrl='$rid' ".
@@ -316,18 +316,91 @@
 							   "AND radio.cid = '$cmp' AND m.cid = '$cmp' AND team.cid = '$cmp' AND cmp.cid = '$cmp' ".
 							   "ORDER BY radio.rt ASC ";
 					}
-					
+
 					$logsql = "$logsql \n ---- SQL --- $sql";
 					$res = mysql_query($sql);
-					$results = calculateResult($res);         
+					$results = calculateResult($res);
 				}
 			}
 		}
 		$output = formatJSON2($results, true);
 	}
+	elseif (($act == "result_mid") && ($cmp != "") && ($cls != "")) {
+
+			// Test with: http://localhost/meos_mop/bootshow.php?action=result_mid&cmp=1&cls=1&debug=1
+
+			//mysql_set_charset('utf8');
+			// Get db with details
+			$sql = "SELECT cmp.name AS name, oev.name as oevname, oev.nameId AS nameId, oev.zerotime AS zerotime ".
+				"FROM mopCompetition cmp, oEvent oev ".
+				"WHERE cmp.cid = '$cmp' ";
+				"AND cmp.name=oev.name ";
+				$logsql = "$logsql \n ---- SQL result_mid --- $sql";
+
+			$res = mysql_query($sql);
+			$results = $res;
+
+			while ($row = mysql_fetch_assoc($results)) {
+					echo "<br>".$row['name']."=".$row['oevname'];
+					echo strcmp($row['name'], $row['oevname']);
+					if ($row['name']==$row['oevname']) {
+						$database=$row['nameId'];
+						$zerotime=$row['zerotime'];
+					} else {
+						$database="missing";
+						$zerotime="missing";
+					}
+			}
+			echo "<h1>".$cmp."</h1>";
+			echo "<h1>".$row['name']."</h1>";
+			echo "<h1>".$row['oevname']."</h1>";
+			echo "<h1>".$database."</h1>";
+
+			if ($database=="missing") {
+				die("Fejl");
+			}
+
+			$sql = "SELECT Club As id, Name As name, Club as team, (FinishTime-StartTime) as SlutTid, '$zerotime'+FinishTime As LastSeen, Status as status, CardNo AS CardNo ".
+				"FROM ".$database.".oRunner ".
+				"WHERE Class='$cls' ".
+				"AND removed=0 ".
+				"AND status in (1, 6) ".
+				"ORDER BY SlutTid ";
+				$logsql = "$logsql \n ---- SQL result_mid --- $sql";
+
+			$res = mysql_query($sql);
+		 	$results = $res;
+
+			while ($row = mysql_fetch_assoc($results)) {
+					echo "<br>".$row['id'];
+					echo " ".$row['name'];
+					echo " ".$row['team'];
+					echo " ".gmdate("H:i:s", $row['SlutTid']);
+					echo " ".gmdate("H:i:s", $row['LastSeen']);
+					echo " ".$row['status'];
+					echo " ".$row['CardNo'];
+					// Punch
+					$sql = "SELECT '$zerotime'+Time As Time, Type ".
+						"FROM ".$database.".oPunch ".
+						"WHERE CardNo=".$row['CardNo']." ".
+						"AND removed=0 ".
+						"ORDER BY Time ";
+						$logsql = "$logsql \n ---- SQL result_mid --- $sql";
+
+					$resx = mysql_query($sql);
+				 	$resultsx = $resx;
+					echo "<br>";
+					while ($rowx = mysql_fetch_assoc($resultsx)) {
+						echo "  ".gmdate("H:i:s", $rowx['Time'])." ".$rowx['Type']."|";
+					}
+			}
+			echo "<br>";
+
+			$output = formatJSON($results);
+	}
 	elseif (($act == "start") && ($cmp != "") && ($cls != "")) {
-	
-	
+
+
 		/* get results for class in competition*/
 		$results = array();
 	    $sql = "SELECT max(leg) FROM mopTeamMember tm, mopTeam t WHERE tm.cid = '$cmp' AND t.cid = '$cmp' AND tm.id = t.id AND t.cls = $cls";
@@ -337,70 +410,70 @@
 
 		$ord=0;
     	if ($numlegs >= 1) {
-			//Multiple legs, relay etc. 
+			//Multiple legs, relay etc.
       		$sql = "SELECT t.id AS id, t.name AS team, t.st % 864000 AS starttime ".
                    "FROM mopTeam t ".
              	   "WHERE t.cls = '$cls' ".
                    "AND t.cid = '$cmp' ".
-                   "ORDER BY t.id ASC";	
-	
+                   "ORDER BY t.id ASC";
+
 			$logsql = "$logsql \n ---- SQL multiple --- $sql";
 			$results = mysql_query($sql);
 
 			/* populate with runners */
 			/* place, name, team, time, after, tottime, totstat */
-			/* ["No.","Navn","Klub","Tid","&nbsp;","Samlet","&nbsp;"] */					
+			/* ["No.","Navn","Klub","Tid","&nbsp;","Samlet","&nbsp;"] */
 			/* ["Pl.","Tur", "Navn" "Klub (hold)" "Start tid"]*/
-					
+
 			$head = true;
 		    $rows = array();
 			while($r = mysql_fetch_assoc($results)) {
 				if ($head == true) {
 	    			$rrow = array();
-	    			
-        			$rrow[] = 'startnumber'; 
+
+        			$rrow[] = 'startnumber';
         			$rrow[] = 'team';
         			$rrow[] = 'time';
-		        			
-					$head = false;										
-				}	
-									
+
+					$head = false;
+				}
+
 				/* team details */
     			$rrow = array();
-    			
+
     			$rrow['startnumber'] = ''; /*$r['id']; */
     			$rrow['team'] = $r['team'];
 
     			$t = $r['starttime']/10;
     			if ($t >= 86400)
     				$t -= 86400;
-		        $rrow['starttime'] = sprintf("%d:%02d:%02d", $t/3600, ($t/60)%60, $t%60);			
-		        			
+		        $rrow['starttime'] = sprintf("%d:%02d:%02d", $t/3600, ($t/60)%60, $t%60);
+
 				$rows[] = $rrow;
 
-				/* get runners */	
+				/* get runners */
       			$rrow = array();
-		      			
+
           		$sql = "SELECT tm.leg, cmp.name AS name ".
 	                   "FROM mopTeam t, mopTeamMember tm, mopCompetitor cmp ".
                  	   "WHERE t.id = tm.id AND tm.rid = cmp.id ".
                        "AND tm.cid = '$cmp' AND cmp.cid = '$cmp' ".
                        "AND t.id='".$r['id']."' ".
                        "ORDER BY tm.leg";
-		      			
+
 				$logsql = "$logsql \n ---- SQL --- $sql";
 				$res = mysql_query($sql);
 				$tottime = 0;
 				while ($rr = mysql_fetch_array($res)) {
 
-	    			$rrow['startnumber'] = ''; 
+	    			$rrow['startnumber'] = '';
 	    			$rrow['team'] = $rr['leg'].". ".$rr['name'];
 	    			$rrow['starttime'] = '';
-				
+
 					$rows[] = $rrow;
 				}
-			}	
-			
+			}
+
 			$results  = $rows;
 	    }
 	    else {
@@ -420,38 +493,36 @@
 				while($r = mysql_fetch_assoc($results)) {
 					if ($head == true) {
 		    			$rrow = array();
-		    			
-	        			$rrow[] = 'startnumber'; 
+
+	        			$rrow[] = 'startnumber';
 	        			$rrow[] = 'name';
 	        			$rrow[] = 'team';
 	        			$rrow[] = 'starttime';
 
-						$head = false;										
-					}	
-										
+						$head = false;
+					}
+
 					/* team details */
 	    			$rrow = array();
-	    			
+
 	    			$rrow['startnumber'] = ''; /* $r['id']; */
 	    			$rrow['name'] = $r['name'];
 	    			$rrow['team'] = $r['team'];
-	    			
+
 	    			$t = $r['starttime']/10;
 	    			if ($t >= 86400)
 	    				$t -= 86400;
-			        $rrow['starttime'] = sprintf("%d:%02d:%02d", $t/3600, ($t/60)%60, $t%60);			
-					
+			        $rrow['starttime'] = sprintf("%d:%02d:%02d", $t/3600, ($t/60)%60, $t%60);
+
 					$rows[] = $rrow;
 				}
-				
+
 				$results = $rows;
 			}
-			
+
 		}
-		
 		$output = formatJSON2($results, true);
-	}	
-	
+	}
 
 	if ($debug!="1")
 	{

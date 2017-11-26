@@ -2,12 +2,12 @@
   <head>
   	<meta http-equiv="Content-Type" content="text/html;charset=UFT-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>FIF Hillerød Orientering - Live</title>
+	<title>FIF Hillerï¿½d Orientering - Live</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="js/bootstrap.min.js" rel="stylesheet"/>
 	<link href="css/ddscrollspy.css" rel="stylesheet"/>
-	
-	
+
+
 <!--[if lt IE 9]><script src="./docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -52,7 +52,7 @@ jQuery(function($){ // on document load
 	$('#horizontalmenu').ddscrollSpy({ // initialize first demo
 		scrolltopoffset: -50
 	})
-	
+
 	klokken = document.getElementById("loadtime");
 	h = window.innerHeight;
 	headerOffset=document.body.offsetHeight - h;
@@ -62,7 +62,7 @@ jQuery(function($){ // on document load
 	{
 		dur = minreloadinterval;
 	}
-	
+
 	setTimeout(setKlokken);
 	startAnimation();
 })
@@ -78,18 +78,18 @@ function setKlokken()
 }
 
 function startAnimation()
-{	
+{
 	//n = (new Date()).getTime();
 	if (elapsetime >= (dur - topbottomdelay))
-	{ 
+	{
 		window.scrollTo(0,0);
 		location.reload();
 	}
 	else
 	{
-		$('body').delay(topbottomdelay).animate(  {scrollTop: headerOffset}, 
+		$('body').delay(topbottomdelay).animate(  {scrollTop: headerOffset},
 							{
-							duration: scrollduration, 
+							duration: scrollduration,
 							easing: "linear" ,
 							done : function() { $('body').delay(topbottomdelay).animate({scrollTop:0}, {duration:1000, easing: "linear", done : function(){ setTimeout(startAnimation, 500);}}); }
 							}
@@ -110,10 +110,11 @@ function filldata()
 	$multiple= '';
 	if (isset($_GET['multiple']))
 	    $multiple = $_GET['multiple'];
-    
+
 	foreach ($cls as $selectedCls) {
 		echo "loadFinishResult('".$action."', '".$cmp."', '".$selectedCls."', '".$leg."', '".$radio."', '".$multiple."');";
 	}
+  
 ?>
 
 
@@ -153,10 +154,10 @@ function filldata()
 		<th>Tid</th>
 		<th>&nbsp;</th>
 		</tr><thead>
-		<tbody><tr><td align="right" width="6%">1.</td><td width="32%">Kaia Jørgensen</td><td width="32%">Tisvilde Hegn OK</td><td align="right" width="15%">0:10:33</td><td align="right" width="15%"></td></tr><tr><td align="right" width="6%">2.</td><td width="32%">Sigrid Høyer Staugaard</td><td width="32%">FIF Hillerød Orientering</td><td align="right" width="15%">0:10:49</td><td align="right" width="15%">+0:16</td></tr><tr><td>3.</td><td>Emma Emilsson</td><td>OK Skogsfalken</td><td>0:11:01</td><td>+0:28</td></tr><tr><td>4.</td><td>Johanne Schøier Kovsted</td><td>Tisvilde Hegn OK</td><td>0:11:58</td><td>+1:25</td></tr><tr><td>5.</td><td>Ellen K. Larsen</td><td>Søllerød OK</td><td>0:12:35</td><td>+2:02</td></tr><tr><td>6.</td><td>Lisa Swartz</td><td>OK Orion</td><td>0:13:12</td><td>+2:39</td></tr><tr><td>7.</td><td>Amalie Ertmann</td><td>Allerød OK</td><td>0:13:36</td><td>+3:03</td></tr><tr><td>8.</td><td>Hedda Kärner Grooss</td><td>Allerød OK</td><td>0:14:05</td><td>+3:32</td></tr><tr><td>9.</td><td>Katrine Krogh Madsen</td><td>OK Roskilde</td><td>0:14:06</td><td>+3:33</td></tr><tr><td>10.</td><td>Liva Heydorn Andersen</td><td>OK Roskilde</td><td>0:15:40</td><td>+5:07</td></tr></tbody></table>
-</div>		
+		<tbody><tr><td align="right" width="6%">1.</td><td width="32%">Kaia Jï¿½rgensen</td><td width="32%">Tisvilde Hegn OK</td><td align="right" width="15%">0:10:33</td><td align="right" width="15%"></td></tr><tr><td align="right" width="6%">2.</td><td width="32%">Sigrid Hï¿½yer Staugaard</td><td width="32%">FIF Hillerï¿½d Orientering</td><td align="right" width="15%">0:10:49</td><td align="right" width="15%">+0:16</td></tr><tr><td>3.</td><td>Emma Emilsson</td><td>OK Skogsfalken</td><td>0:11:01</td><td>+0:28</td></tr><tr><td>4.</td><td>Johanne Schï¿½ier Kovsted</td><td>Tisvilde Hegn OK</td><td>0:11:58</td><td>+1:25</td></tr><tr><td>5.</td><td>Ellen K. Larsen</td><td>Sï¿½llerï¿½d OK</td><td>0:12:35</td><td>+2:02</td></tr><tr><td>6.</td><td>Lisa Swartz</td><td>OK Orion</td><td>0:13:12</td><td>+2:39</td></tr><tr><td>7.</td><td>Amalie Ertmann</td><td>Allerï¿½d OK</td><td>0:13:36</td><td>+3:03</td></tr><tr><td>8.</td><td>Hedda Kï¿½rner Grooss</td><td>Allerï¿½d OK</td><td>0:14:05</td><td>+3:32</td></tr><tr><td>9.</td><td>Katrine Krogh Madsen</td><td>OK Roskilde</td><td>0:14:06</td><td>+3:33</td></tr><tr><td>10.</td><td>Liva Heydorn Andersen</td><td>OK Roskilde</td><td>0:15:40</td><td>+5:07</td></tr></tbody></table>
+</div>
 -->
-</div>	
+</div>
 <br>
 <br>
 </body>

@@ -5,10 +5,10 @@ DB:     MeOSMain
 
 DB:     <NameId>
   Table:  oEvent indeholder oplysninger om løbet
-          id          id på det valgte løb
-          ZeroTime    Løbets nultid
+          id          id på det valgte løb                                      Er fundet og gemmes i $databse
+          ZeroTime    Løbets nultid                                             Er fundet og gemmes i $zerotime
 
-  Table:  oClasse indeholder oplysninger om klasser
+  Table:  oClass indeholder oplysninger om klasser
           id          id på klassen
           Name        Navn på klassen
 
@@ -20,6 +20,7 @@ DB:     <NameId>
           Status      Status på løberen
                       0 = OK
                       4 = UDGÅET
+                      6 = MAKS.TID
                       ...
 
   Table:  oPunch indeholder stemplinger der kommer ind via radio
