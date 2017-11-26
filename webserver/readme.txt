@@ -14,6 +14,16 @@ Installation af lokal webserver (Apache) og MySQL database:
 
   2.  Apache webserveren opsættes til at bruge ..\GitHub\udvikling\version_xxx eller ..\GitHub\produktion\version_xxx som root dictory
 
+      Der skal ændres i config filen httpd.conf for Apache i denne sektion. Hvor du skal ændre begge stier til der hvor dine filer er placeret
+      OBS: Husk at genstarte din Apache server efter du har ændret i .conf filen.
+
+      # DocumentRoot: The directory out of which you will serve your
+      # documents. By default, all requests are taken from this directory, but
+      # symbolic links and aliases may be used to point to other locations.
+      #
+      DocumentRoot "C:/xampp/htdocs"
+      <Directory "C:/xampp/htdocs">
+
   3.  Test forbindelse til MySQL ved at starte MeOS og bruge funktionen 'Databaseforbindelse...'
 
             NB: Brug IP adressen på din PC og ikke 'localhost' eller '127.0.0.1'
@@ -23,11 +33,12 @@ Installation af lokal webserver (Apache) og MySQL database:
             GRANT ALL PRIVILEGES ON *.* TO 'meos';
 
       Når du kan forbinde til databasen, kan du åben et løb og vælge at overføre dette til serveren.
+      Husk at tilrette ''..\meos_mop\config_da.php' med de oplysninger som din MySQL kræver for at kunne logge ind og oprette en database.
 
       Samtidig med at løbet overføres til serveren oprettes databasen 'meosmain' samt tilhørende databaser.
 
       For at få dannet de tabeller som programmerne der viser startlister og resultatlister bruger, skal der køres en fil der danner disse tabeller.
-      Filen ligger i ''..\meos_mop' og hedder setup.php eller _setup.php.
+      Filen ligger i '..\meos_mop' og hedder setup.php eller _setup.php.
 
       Når denne fil er kort korrekt, vil der været oprettet nogle tebeller med navnet 'mop%' i databasen 'meosmain'.
 
