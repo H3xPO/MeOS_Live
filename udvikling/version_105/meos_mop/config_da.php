@@ -28,4 +28,7 @@ $lang['startnumber'] = "#";
 $lang['totstat'] = "Samlet pl";
 $lang['tstat'] = "Samlet pl";
 $lang['id'] = "id";
+$lang['check'] = "CHK";
+$lang['radio'] = "Radio";
+$lang['status'] = "Status";
 ?>

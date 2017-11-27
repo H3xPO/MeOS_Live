@@ -329,74 +329,129 @@
 
 			// Test with: http://localhost/meos_mop/bootshow.php?action=result_mid&cmp=1&cls=1&debug=1
 
-			//mysql_set_charset('utf8');
-			// Get db with details
+			// Get the name of the db with details and the zerotime
 			$sql = "SELECT cmp.name AS name, oev.name as oevname, oev.nameId AS nameId, oev.zerotime AS zerotime ".
 				"FROM mopCompetition cmp, oEvent oev ".
-				"WHERE cmp.cid = '$cmp' ";
+				"WHERE cmp.cid = '$cmp' ".
 				"AND cmp.name=oev.name ";
 				$logsql = "$logsql \n ---- SQL result_mid --- $sql";
 
 			$res = mysql_query($sql);
 			$results = $res;
 
-			while ($row = mysql_fetch_assoc($results)) {
-					echo "<br>".$row['name']."=".$row['oevname'];
-					echo strcmp($row['name'], $row['oevname']);
-					if ($row['name']==$row['oevname']) {
+			if ($row = mysql_fetch_assoc($results)) {
 						$database=$row['nameId'];
 						$zerotime=$row['zerotime'];
 					} else {
 						$database="missing";
 						$zerotime="missing";
 					}
-			}
-			echo "<h1>".$cmp."</h1>";
-			echo "<h1>".$row['name']."</h1>";
-			echo "<h1>".$row['oevname']."</h1>";
-			echo "<h1>".$database."</h1>";
+			//echo "<h1>".$database."</h1>";
+			//echo "<h1>".$cls."</h1>";
 
+			// Stop if db with details not is found
 			if ($database=="missing") {
 				die("Fejl");
 			}
 
-			$sql = "SELECT Club As id, Name As name, Club as team, (FinishTime-StartTime) as SlutTid, '$zerotime'+FinishTime As LastSeen, Status as status, CardNo AS CardNo ".
-				"FROM ".$database.".oRunner ".
+  		// Select the the runners
+			$sql = "SELECT oRu.Id As id, oRu.Name As name, oCl.Name as team, (oRu.FinishTime-oRu.StartTime) as time, '$zerotime'+oRu.FinishTime As lastseen, oRu.Status as status, oRu.CardNo AS cardno ".
+				"FROM ".$database.".oRunner AS oRu LEFT JOIN ".$database.".oClub AS oCl ON oRu.Club=oCl.Id ".
 				"WHERE Class='$cls' ".
-				"AND removed=0 ".
-				"AND status in (1, 6) ".
-				"ORDER BY SlutTid ";
+				"AND oRu.removed=0 ".
+				"ORDER BY status, time ";
 				$logsql = "$logsql \n ---- SQL result_mid --- $sql";
 
 			$res = mysql_query($sql);
 		 	$results = $res;
 
-			while ($row = mysql_fetch_assoc($results)) {
-					echo "<br>".$row['id'];
-					echo " ".$row['name'];
-					echo " ".$row['team'];
-					echo " ".gmdate("H:i:s", $row['SlutTid']);
-					echo " ".gmdate("H:i:s", $row['LastSeen']);
-					echo " ".$row['status'];
-					echo " ".$row['CardNo'];
-					// Punch
-					$sql = "SELECT '$zerotime'+Time As Time, Type ".
-						"FROM ".$database.".oPunch ".
-						"WHERE CardNo=".$row['CardNo']." ".
-						"AND removed=0 ".
-						"ORDER BY Time ";
-						$logsql = "$logsql \n ---- SQL result_mid --- $sql";
+			$head = true;
+			$rows = array();
+			while($r = mysql_fetch_assoc($results)) {
+				if ($head == true) {
+						$rrow = array();
 
-					$resx = mysql_query($sql);
-				 	$resultsx = $resx;
-					echo "<br>";
-					while ($rowx = mysql_fetch_assoc($resultsx)) {
-						echo "  ".gmdate("H:i:s", $rowx['Time'])." ".$rowx['Type']."|";
-					}
+							$rrow[] = 'check';
+							$rrow[] = 'name';
+							$rrow[] = 'team';
+							//$rrow[] = 'radio';
+							$rrow[] = 'finish';
+							$rrow[] = 'time';
+							$rrow[] = 'status';
+
+							$head = false;
+				}
+
+				/* Runner details */
+
+				/* Have the runner punched CHECK */
+				$check="";
+				$sql = "SELECT '$zerotime'+Time As Time ".
+				 			"FROM ".$database.".oPunch ".
+				 			"WHERE CardNo=".$r['cardno']." ".
+				 			"AND Type=3 AND removed=0 ".
+				 			"ORDER BY Time";
+							$logsql = "$logsql \n ---- SQL result_mid --- $sql<br>";
+				$resx = mysql_query($sql);
+				while ($rowx = mysql_fetch_assoc($resx)) {
+				 			$check = gmdate("H:i", $rowx['Time']);
+				}
+
+				/* Last radio punched */
+				$radio="";
+				$sql = "SELECT '$zerotime'+Time As Time, Type ".
+				 			"FROM ".$database.".oPunch ".
+				 			"WHERE CardNo=".$r['cardno']." ".
+				 			"AND Type>=3 AND removed=0 ".			// Just test, must chenge to Type>=31
+				 			"ORDER BY Time";
+							$logsql = "$logsql \n ---- SQL result_mid --- $sql<br>";
+				$resx = mysql_query($sql);
+				while ($rowx = mysql_fetch_assoc($resx)) {
+				 			$radio = sprintf("%03s: ",$rowx['Type']).gmdate("H:i:s", $rowx['Time']);
+				}
+
+				/* Finish punched */
+				$finish="";
+				$sql = "SELECT '$zerotime'+Time As Time ".
+				 			"FROM ".$database.".oPunch ".
+				 			"WHERE CardNo=".$r['cardno']." ".
+				 			"AND Type>3 AND Type<31 AND removed=0 ".
+				 			"ORDER BY Time";
+							$logsql = "$logsql \n ---- SQL result_mid --- $sql<br>";
+				$resx = mysql_query($sql);
+				while ($rowx = mysql_fetch_assoc($resx)) {
+				 			$finish = gmdate("H:i:s", $rowx['Time']);
+				}
+
+				$rrow = array();
+				$rrow['check'] = $check;
+				if (strpos($r['name'], ",")>0) {
+					$name = explode(",", $r['name']);
+					$rrow['name'] = $name[1]." ".$name[0];
+				} else {
+					$rrow['name'] = $r['name'];
+				}
+				$rrow['team'] = $r['team'];
+				//$rrow['radio'] = $radio;
+				$rrow['finish'] = $finish;
+
+				// Only show time if status=OK
+				if (getStatusString($r['status'])=="OK") {
+					$rrow['time'] = gmdate("H:i:s", $r['time']);
+				} else {
+					$rrow['time'] = "";
+				}
+
+				$status = "";
+				if (getStatusString($r['status'])!="OK") { $status=getStatusString($r['status']); }
+				$rrow['status'] = $status;
+
+				$rows[] = $rrow;
 			}
-			echo "<br>";
+			$results = $rows;
 
-			$output = formatJSON($results);
+			$output = formatJSON2($results, true);
+
 	}
 	elseif (($act == "start") && ($cmp != "") && ($cls != "")) {
 

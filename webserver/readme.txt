@@ -17,14 +17,26 @@ Installation af lokal webserver (Apache) og MySQL database:
       Der skal ændres i config filen httpd.conf for Apache i denne sektion. Hvor du skal ændre begge stier til der hvor dine filer er placeret
       OBS: Husk at genstarte din Apache server efter du har ændret i .conf filen.
 
-      # DocumentRoot: The directory out of which you will serve your
-      # documents. By default, all requests are taken from this directory, but
-      # symbolic links and aliases may be used to point to other locations.
-      #
-      DocumentRoot "C:/xampp/htdocs"
-      <Directory "C:/xampp/htdocs">
+        # DocumentRoot: The directory out of which you will serve your
+        # documents. By default, all requests are taken from this directory, but
+        # symbolic links and aliases may be used to point to other locations.
+        #
+        DocumentRoot "C:/xampp/htdocs"
+        <Directory "C:/xampp/htdocs">
 
-  3.  Test forbindelse til MySQL ved at starte MeOS og bruge funktionen 'Databaseforbindelse...'
+  3.  MySQL databasen opsættes til at kunne håndtere danske tegn, korrekt.
+
+      Der skal ændres i my.ini, såldes at den indeholder dette:
+      OBS: Husk at genstarte din MySQL server efter du har rettet i .ini filen.
+
+        ## UTF 8 Settings
+        init-connect=\'SET NAMES utf8\'
+        collation_server=utf8_danish_ci
+        character_set_server=utf8
+        #skip-character-set-client-handshake
+        #character_sets-dir="C:/xampp/mysql/share/charsets"
+
+  4.  Test forbindelse til MySQL ved at starte MeOS og bruge funktionen 'Databaseforbindelse...'
 
             NB: Brug IP adressen på din PC og ikke 'localhost' eller '127.0.0.1'
 
@@ -44,7 +56,7 @@ Installation af lokal webserver (Apache) og MySQL database:
 
       Herefter kan der køres autofunktioner med Resultater online fra MeOS.
 
-  4.  Flytning til produktion:
+  5.  Flytning til produktion:
       1. Filer fra ..\GitHub\MeOS_Live\produktion\version_xxx\ kopieres til din wWebserver
       2. Tilret filen webserver\meos_mop\config_da.php således at følgende oplysninger passer til den MySQL server du bruger:
             // MySQL server configuration
