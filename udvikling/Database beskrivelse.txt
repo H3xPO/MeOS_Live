@@ -5,7 +5,7 @@ DB:     MeOSMain
 
 DB:     <NameId>
   Table:  oEvent indeholder oplysninger om løbet
-          id          id på det valgte løb                                      Er fundet og gemmes i $databse
+          id          id på det valgte løb                                      Er fundet og gemmes i $database
           ZeroTime    Løbets nultid                                             Er fundet og gemmes i $zerotime
 
   Table:  oClass indeholder oplysninger om klasser

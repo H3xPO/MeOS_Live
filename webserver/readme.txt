@@ -40,7 +40,7 @@ Installation af lokal webserver (Apache) og MySQL database:
 
             NB: Brug IP adressen på din PC og ikke 'localhost' eller '127.0.0.1'
 
-      Hvis du vil oprette en bruger med navnet 'meos', der kan logge på MySQL uden password med fulde rettigheder, kan du udføre disse komandore på din MySQL server:
+      Hvis du vil oprette en bruger med navnet 'meos', der kan logge på MySQL uden password med fulde rettigheder, kan du udføre disse kommandore på din MySQL server:
             CREATE USER 'meos';
             GRANT ALL PRIVILEGES ON *.* TO 'meos';
 

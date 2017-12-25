@@ -1,13 +1,13 @@
-# MeOS-Live
-
+MeOS_Live
+******************************************************************
 Dette er en samling af forskellige løsninger til visning af resultater m.v.
 fra orienteringsløb afviklet med løbsprogrammet MeOS.
 
 Ideen er at disse resultater vises på en større skærm på stævnepladsen, således
 at startlister og resultatformidling bliver elektronisk.
 
-Overordnet er løsningen baseret på PHP sider placeret på en webserver. Disse sider henter
-data i MeOS løbsdatabasen (MySQL) og præsenterer dem i en browser.
+Overordnet er løsningen baseret på nogle PHP sider på en webserver, der henter
+data i MeOS løbsdatabasen og præsenterer dem i en browser.
 
 Løsningen indeholder følgende features i seneste version:
 1   Visning af information fra filen /info/index.html
@@ -28,6 +28,7 @@ Løsningen indeholder følgende features i seneste version:
 5   Divisionsmatch - resultat
     Skærmen viser alle resultater fra een match
 
+Herunder er de væsentlige ændringer i de enkelte versioner.
 
 PRODUKTION/VERSION_105
 ----------------------
