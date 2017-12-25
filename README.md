@@ -9,8 +9,8 @@ at startlister og resultatformidling bliver elektronisk.
 Overordnet er løsningen baseret på PHP sider placeret på en webserver. Disse sider henter
 data i MeOS løbsdatabasen (MySQL) og præsenterer dem i en browser.
 
-####Løsningen indeholder følgende features i seneste version:
-1.   Visning af information fra filen /info/index.html
+#### Løsningen indeholder følgende features i seneste version
+1.  Visning af information fra filen /info/index.html
     Kan f.eks. bruges til at fremhæve oplysninger fra instruktionen
 2.  Rullende startlister
     Skærmen opdeles i 2 kolonner, der kan vise forskellige klasse startlister
@@ -29,14 +29,14 @@ data i MeOS løbsdatabasen (MySQL) og præsenterer dem i en browser.
     Skærmen viser alle resultater fra een match
 
 
-##PRODUKTION/VERSION_105
+## PRODUKTION/VERSION_105
 Baseret på afvikling fra XAMPP
 
 Beskrivelse af webserver/MySQL setup i /webserver/readme.txt
 
 Ny INDEX.PHP lavet
 
-####Ændrede/tilføjede features:
+#### Ændrede/tilføjede features
 2.  Rullende startlister
     Disse indeholder nu også et evt. startnummer
 3.  Rullende resultater - foreløbige
@@ -46,11 +46,12 @@ Ny INDEX.PHP lavet
     (tidligere 3.)
 
 
-##PRODUKTION/VERSION_100
+## PRODUKTION/VERSION_100
 Første version i GitHub, porteret fra ZIP og Dropbox deling.
-Baseret på afvikling på f.eks. USBWebserver
 
-####Følgende features findes:
+Baseret på afvikling på USBWebserver
+
+#### Følgende features findes:
 1.  Visning af information fra filen /info/index.html
     Kan f.eks. bruges til at fremhæve oplysninger fra instruktionen
 2.  Rullende startlister
