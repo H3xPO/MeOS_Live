@@ -14,13 +14,13 @@ data i MeOS løbsdatabasen (MySQL) og præsenterer dem i en browser.
     Kan f.eks. bruges til at fremhæve oplysninger fra instruktionen
 2.  Rullende startlister
     Skærmen opdeles i 2 kolonner, der kan vise forskellige klasse startlister
-    Viser:
+    Viser: Startnummer, Navn, Klub, Start tid
 3.  Rullende resultater - foreløbige
     Resultat baseret på målstempling, der kontrolleres altså ikke for fejlklip. Forudsætter at der er en radiopost på målposten.
-    Viser:
+    Viser: CHK (tid),  Navn, Klub, Sidste radio eller Mål, Tid, Status
 4.  Rullende resultater
     Skærmen opdeles i 2 kolonner, der kan vise forskellige klasse resultater
-    Viser:
+    Viser: Placering, Navn, Klub, Tid, Efter
 5.  Stafet, formelding
     Viser løbere der passerer en given radiopost
 6.  Divisionsmatch - oversigt

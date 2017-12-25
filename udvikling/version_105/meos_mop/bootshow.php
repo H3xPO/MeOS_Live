@@ -346,8 +346,6 @@
 						$database="missing";
 						$zerotime="missing";
 					}
-			//echo "<h1>".$database."</h1>";
-			//echo "<h1>".$cls."</h1>";
 
 			// Stop if db with details not is found
 			if ($database=="missing") {
@@ -402,7 +400,7 @@
 				$sql = "SELECT '$zerotime'+Time As Time, Type ".
 				 			"FROM ".$database.".oPunch ".
 				 			"WHERE CardNo=".$r['cardno']." ".
-				 			"AND Type>=3 AND removed=0 ".			// Just test, must chenge to Type>=31
+				 			"AND Type>=3 AND removed=0 ".			// Just test, must change to Type>=31
 				 			"ORDER BY Time";
 							$logsql = "$logsql \n ---- SQL result_mid --- $sql<br>";
 				$resx = mysql_query($sql);
@@ -533,13 +531,39 @@
 	    }
 	    else {
 			if (is_null($numlegs)) {
+
+				// Read from the MySQL database
+				// Get the name of the db with details and the zerotime
+				$sql = "SELECT cmp.name AS name, oev.name as oevname, oev.nameId AS nameId, oev.zerotime AS zerotime ".
+					"FROM mopCompetition cmp, oEvent oev ".
+					"WHERE cmp.cid = '$cmp' ".
+					"AND cmp.name=oev.name ";
+					$logsql = "$logsql \n ---- SQL result_mid --- $sql";
+
+				$res = mysql_query($sql);
+				$results = $res;
+
+				if ($row = mysql_fetch_assoc($results)) {
+							$database=$row['nameId'];
+							$zerotime=$row['zerotime'];
+						} else {
+							$database="missing";
+							$zerotime="missing";
+						}
+
+				// Stop if db with details not is found
+				if ($database=="missing") {
+					die("Fejl");
+				}
+
+
 		        //No teams;
 		        $msg ="no teams";
         		$sql = "SELECT cmp.id AS id, cmp.name AS name, org.name AS team, cmp.st % 864000 AS starttime ".
             		   "FROM mopCompetitor cmp LEFT JOIN mopOrganization AS org ON cmp.org = org.id AND cmp.cid = org.cid ".
                    	   "WHERE cmp.cls = '$cls' ".
                        "AND cmp.cid = '$cmp' ".
-                       "ORDER BY cmp.st % 864000 ";
+                       "ORDER BY cmp.st % 864000, name ";
 				$logsql = "$logsql \n ---- SQL --- $sql";
 				$results = mysql_query($sql);
 
@@ -560,7 +584,18 @@
 					/* team details */
 	    			$rrow = array();
 
-	    			$rrow['startnumber'] = ''; /* $r['id']; */
+						// Bib/brystnummer
+						$bib="";
+						$sql = "SELECT Bib As Bib ".
+						 			"FROM ".$database.".oRunner ".
+						 			"WHERE Id=".$r['id']." ";
+									$logsql = "$logsql \n ---- SQL --- $sql<br>";
+									//die($logsql);
+						$resx = mysql_query($sql);
+						While ($rowx = mysql_fetch_assoc($resx)) {
+										 			$bib = $rowx['Bib'];
+						}
+	    			$rrow['startnumber'] = $bib; /* $r['id']; */
 	    			$rrow['name'] = $r['name'];
 	    			$rrow['team'] = $r['team'];
 

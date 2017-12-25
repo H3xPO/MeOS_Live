@@ -15,6 +15,7 @@ DB:     <NameId>
   Table:  oRunner indeholder oplysninger om løberen
           CardNo      Nummer på SI
           Class       Løberens klasse
+          Bib         Brystnummer
           StartTime   Antal sekunder efter nultid
           FinishTime  Antal sekunder efter nultid
           Status      Status på løberen

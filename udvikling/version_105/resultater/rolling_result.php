@@ -114,7 +114,7 @@ function filldata()
 	foreach ($cls as $selectedCls) {
 		echo "loadFinishResult('".$action."', '".$cmp."', '".$selectedCls."', '".$leg."', '".$radio."', '".$multiple."');";
 	}
-  
+
 ?>
 
 

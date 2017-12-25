@@ -39,7 +39,7 @@ body,html {
 	margin:0px;
 	text-decoration:none;
 	color:white;
-	background:#264C71 url('images/menu.jpg') repeat-x;
+	/*background:#264C71 url('images/menu.jpg') repeat-x;*/
 }
 
 #menuhover{
@@ -51,7 +51,7 @@ body,html {
 	margin:0px;
 	text-decoration:none;
 	color:#012C57;
-	background:#264C71 url('images/menuhover.jpg') repeat-x;
+	/*background:#264C71 url('images/menuhover.jpg') repeat-x;*/
 }
 
 
@@ -61,33 +61,34 @@ body,html {
 
 #menuleft{
 	float:left;
-	background:#264C71 url('images/menuleft.jpg') repeat-x;
+	/*background:#264C71 url('images/menuleft.jpg') repeat-x;*/
 	height:38px;
 	width:2px;
 }
 
 #menulefthover{
 	float:left;
-	background:#264C71 url('images/menulefthover.jpg') repeat-x;
+	/*background:#264C71 url('images/menulefthover.jpg') repeat-x;*/
 	height:38px;
 	width:2px;
 }
 
 #menuright{
 	float:left;
-	background:#264C71 url('images/menuright.jpg') repeat-x;
+	/*background:#264C71 url('images/menuright.jpg') repeat-x;*/
 	height:38px;
 	width:2px;
 }
 #menurighthover{
 	float:left;
-	background:#264C71 url('images/menurighthover.jpg') repeat-x;
+	/*background:#264C71 url('images/menurighthover.jpg') repeat-x;*/
 	height:38px;
 	width:2px;
 }
 
 #content{
-	background: #D2EFFF url('images/content.jpg') repeat-x;
+	/* background: #D2EFFF url('images/content.jpg') repeat-x; */
+	background: #D2EFFF;
 	width:828px;
 	padding:46px;
 	padding-top:44px;
@@ -124,7 +125,7 @@ body,html {
 	width:570px;
 	float:left;
 }
-#banner{
+#del_banner{
 	display:block;
 	height:602px;
 	width:162px;
@@ -153,5 +154,3 @@ h2 {font-size: 125%;}
 .h img{	display:none;}
 .h { background-color: #2D649C; color:white; }
 hr {width: 600px; background-color: #cccccc; border: 0px; height: 1px; color: #000000;}
-
-			
