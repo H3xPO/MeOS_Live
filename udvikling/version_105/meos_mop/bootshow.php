@@ -400,7 +400,7 @@
 				$sql = "SELECT '$zerotime'+Time As Time, Type ".
 				 			"FROM ".$database.".oPunch ".
 				 			"WHERE CardNo=".$r['cardno']." ".
-				 			"AND Type>=3 AND removed=0 ".			// Just test, must change to Type>=31
+				 			"AND Type>=31 AND removed=0 ".
 				 			"ORDER BY Time";
 							$logsql = "$logsql \n ---- SQL result_mid --- $sql<br>";
 				$resx = mysql_query($sql);
@@ -430,7 +430,7 @@
 					$rrow['name'] = $r['name'];
 				}
 				$rrow['team'] = $r['team'];
-				//$rrow['radio'] = $radio;
+				$rrow['radio'] = $radio;
 				$rrow['finish'] = $finish;
 
 				// Only show time if status=OK
