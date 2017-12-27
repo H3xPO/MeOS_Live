@@ -14,6 +14,7 @@ $lang = array();
 $lang['selectcmp'] = "Vælg konkurrence";
 $lang['place'] = "Pl.";
 $lang['team'] = "Klub";
+$lang['club'] = "Hold";
 $lang['name'] = "Navn";
 $lang['after'] = " ";
 $lang['time'] = "Tid";

@@ -14,18 +14,21 @@ data i MeOS løbsdatabasen (MySQL) og præsenterer dem i en browser.
     Kan f.eks. bruges til at fremhæve oplysninger fra instruktionen
 2.  Rullende startlister
     Skærmen opdeles i 2 kolonner, der kan vise forskellige klasse startlister
-    Viser: Startnummer, Navn, Klub, Start tid
-3.  Rullende resultater - foreløbige
-    Resultat baseret på målstempling, der kontrolleres altså ikke for fejlklip. Forudsætter at der er en radiopost på målposten.
-    Viser: CHK (tid),  Navn, Klub, Sidste radio eller Mål, Tid, Status
-4.  Rullende resultater
+    Individuel: Startnummer, Navn, Klub, Start tid
+    Stafet:     Holdnummer, Hold navn, Klub, Start tid
+                * 1. Løber 1
+                * 2. Løber 2    
+3.  Rullende resultater
     Skærmen opdeles i 2 kolonner, der kan vise forskellige klasse resultater
-    Viser: Placering, Navn, Klub, Tid, Efter
-5.  Stafet, formelding
+    Individuel: Placering, Navn, Klub, Tid, Efter
+    Stafet:     Placering, Hold navn, Klub, Samlet tid, Tid efter
+                1. Løber 1, Tid for løber
+                2. Løber 2, Tid for løber                
+4.  Stafet, formelding
     Viser løbere der passerer en given radiopost
-6.  Divisionsmatch - oversigt
+5.  Divisionsmatch - oversigt
     Skærmen opdeles i 2-3 kolonner hvor der i hver kolonne vises det samlede matchresultat
-7.  Divisionsmatch - resultat
+6.  Divisionsmatch - resultat
     Skærmen viser alle resultater fra een match
 
 
@@ -46,12 +49,10 @@ Eksisterende startliste udvides med følgende:
 
 2.  Radio fjernes
 
-3.  Tid skal beregnes fra starttid (målstemplinger uden startis vises ikke)
-
-
+3.  Tid skal beregnes fra starttid (målstemplinger uden startid vises ikke)
 
 #### Ændrede/tilføjede features
-2.  Rullende startlister
+2.  Rullende startlister (indv. og stafet)
     Disse indeholder nu også et evt. startnummer
 3.  Rullende resultater - foreløbige
     Liste, der viser et foreløbigt resultat baseret på målstempling, der kontrolleres altså ikke for fejlklip.

@@ -7,7 +7,7 @@
 
   <?php
     //Kald funktions fil
-    include "function.php";
+    include "function_MP.php";
 
     //Udregning af måltid (Oscar B.)
 
@@ -22,7 +22,7 @@
    ?>
 
   <body>
-    <h1>Liveresultater</h1>
-    <?php echo "Din tid er ". timeformat($timeint); ?>
+    <h1>Liveresultater</h1>  
+    <?php echo "<br>Din tid er ". timeformat($timeint); ?>
   </body>
 </html>

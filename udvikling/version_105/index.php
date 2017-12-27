@@ -13,6 +13,8 @@
 			<div id="contentleft">
 
 			<?php
+				//echo gmdate("H:i:s", 86400);
+
 				$ip = gethostbyname(gethostname());
 				/*$ip = 'localhost';*/
 			?>
@@ -28,22 +30,22 @@
 						<td style="border:2px solid white;">Opdater filen /info/index.html med de oplysninger der skal vises p&aring; sk&aelig;rmen</td>
 					</tr>
 					<tr style="border:2px solid white;">
-						<td style="border:2px solid white;"><b>2/3/4</b></td>
+						<td style="border:2px solid white;"><b>2/3</b></td>
 						<td style="border:2px solid white;"><button type="button" OnClick="window.location='/resultater/rolling.htm';">Rullende</button></td>
 						<td style="border:2px solid white;">Sk&aelig;rmen opdeles i 2 kolonner, der kan vise forskellige klasse startlister eller resultater</td>
 					</tr>
 					<tr style="border:2px solid white;">
-						<td style="border:2px solid white;"><b>5</b></td>
+						<td style="border:2px solid white;"><b>4</b></td>
 						<td style="border:2px solid white;"><button type="button" OnClick="window.location='/resultater/relaywarn.php';">Stafet, formelding</button></td>
 						<td style="border:2px solid white;">Viser l&oslash;bere der passerer en given radiopost (formelding)</td>
 					</tr>
 					<tr style="border:2px solid white;">
-						<td style="border:2px solid white;"><b>6</b></td>
+						<td style="border:2px solid white;"><b>5</b></td>
 						<td style="border:2px solid white;"><button type="button" OnClick="window.location='/divmatch/html/overview/overview.html';">Divisionsmatch - oversigt</button></td>
 						<td style="border:2px solid white;">Sk&aelig;rmen opdeles i 2-3 kolonner, der viser det samlede resultat for hver af 3 matcher</td>
 					</tr>
 					<tr style="border:2px solid white;">
-						<td style="border:2px solid white;"><b>7</b></td>
+						<td style="border:2px solid white;"><b>6</b></td>
 						<td style="border:2px solid white;"><button type="button" OnClick="window.location='/divmatch/html/resultat/resultat1.html';">Divisionsmatch - resultat (match 1)</button></td>
 						<td style="border:2px solid white;">Sk&aelig;rmen viser alle resultater fra een match</td>
 					</tr>
@@ -59,7 +61,6 @@
 
 				//echo ( str_replace ( "module_Zend Optimizer", "module_Zend_Optimizer", preg_replace ( '%^.*<body>(.*)</body>.*$%ms', '$1', $i ) ) ) ;
 			?>
-			<a href="#" id="banner"></a>
 			<br style="clear:both">
 
 			<br>
