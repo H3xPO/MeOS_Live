@@ -101,7 +101,6 @@ Baseret på afvikling på USBWebserver
 
     Viser løbere der passerer en given radiopost
 5.  Divisionsmatch - oversigt
-
     Skærmen opdeles i 2-3 kolonner hvor der i hver kolonne vises det samlede matchresultat
 6.  Divisionsmatch - resultat
 
