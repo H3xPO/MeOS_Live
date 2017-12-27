@@ -36,6 +36,20 @@ Beskrivelse af webserver/MySQL setup i /webserver/readme.txt
 
 Ny INDEX.PHP lavet
 
+## ToDo
+Eksisterende startliste udvides med følgende:
+1.  Placering viser følgende:
+    Nummer      = placering efter aflæsning
+    Nummer+gul  = midlertidig placering efter mål inden aflæsning
+    Sort klat   = løberene har stemplet check
+    Tid         = Starttid tildelt eller fra stempling af enhed (radio)
+
+2.  Radio fjernes
+
+3.  Tid skal beregnes fra starttid (målstemplinger uden startis vises ikke)
+
+
+
 #### Ændrede/tilføjede features
 2.  Rullende startlister
     Disse indeholder nu også et evt. startnummer
