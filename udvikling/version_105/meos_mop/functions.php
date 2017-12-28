@@ -207,7 +207,7 @@ function calculateResult($res) {
 
     else {
 
-      $row['place'] = "";
+      $row['place'] = "INFO";
 
       $row['name'] = $r['name'];
 
