@@ -12,6 +12,7 @@ define("MEOS_PASSWORD", "meos");
 //Localization. NOTE: UTF-8 encoding required for non-latin characters
 $lang = array();
 $lang['selectcmp'] = "Vælg konkurrence";
+$lang['type'] = "-";
 $lang['place'] = "Pl.";
 $lang['team'] = "Klub";
 $lang['club'] = "Hold";

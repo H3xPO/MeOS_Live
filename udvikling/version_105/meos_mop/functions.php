@@ -126,8 +126,6 @@ function calculateResult($res) {
 
   $out = array();
 
-
-
   $place = 0;
 
   $count = 0;
@@ -156,8 +154,6 @@ function calculateResult($res) {
 
       $lastTeam = $r['id'];
 
-
-
     $count++;
 
     $t = $r['time']/10;
@@ -185,8 +181,6 @@ function calculateResult($res) {
 
       $row['team'] = $r['team'];
 
-
-
       if ($t > 0)
 
         $row['time'] = sprintf("%d:%02d:%02d", $t/3600, ($t/60)%60, $t%60);
@@ -194,8 +188,6 @@ function calculateResult($res) {
       else
 
         $row['time'] = "OK"; // No timing
-
-
 
       $after = $t - $bestTime;
 
@@ -221,16 +213,11 @@ function calculateResult($res) {
 
       $row['team'] = $r['team'];
 
-
-
       $row['time'] = getStatusString($r['status']);
 
       $row['after'] = "";
 
     }
-
-
-
 
 
     if (isset($r['tottime'])) {
@@ -257,8 +244,6 @@ function calculateResult($res) {
 
       }
 
-
-
       if (($r['totstat'] == 1) && ($r['status'] == 1))
 
         $totalResult[$count] = ($r['totstat']-1) * 10000000 + $r['tottime'];
@@ -269,15 +254,11 @@ function calculateResult($res) {
 
     }
 
-
-
 	$row['id'] = $lastTeam;
 
     $out[$count] = $row;
 
   }
-
-
 
   if ($hasTotal) {
 

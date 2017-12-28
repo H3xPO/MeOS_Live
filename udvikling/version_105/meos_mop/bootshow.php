@@ -26,9 +26,7 @@
 
 	$output = '';
 	if (($act == "") || ($act=="comp")) {
-
 		/* get competitions */
-
 		$sql = "SELECT name, date, cid FROM mopCompetition ORDER BY date DESC";
 		$logsql = "$logsql \n ---- SQL --- $sql";
 		$res = mysql_query($sql);
@@ -36,7 +34,6 @@
 		$output = formatJSON($res);
 	}
 	elseif (($act == "class") && ($cmp != "")) {
-
 		/* get classes in competition */
 		$sql = "SELECT name, id FROM mopClass WHERE cid = '$cmp' ORDER BY ord";
 		$logsql = "$logsql \n ---- SQL --- $sql";
@@ -45,7 +42,6 @@
 		$output = formatJSON($res);
 	}
 	elseif (($act == "classname") && ($cmp != "") && ($cls != "")) {
-
 		/* get classes in competition */
 		$sql = "SELECT name, id FROM mopClass WHERE cid = '$cmp' AND id='$cls'";
 		$logsql = "$logsql \n ---- SQL --- $sql";
@@ -54,7 +50,6 @@
 		$output = formatJSON($res);
 	}
 	elseif (($act == "leg") && ($cmp != "") && ($cls != "")) {
-
 		/* get legs in the class */
 		$sql = "SELECT DISTINCT leg FROM mopTeamMember tm, mopTeam t ".
 		       " WHERE tm.cid = '$cmp' AND t.cid = '$cmp' AND tm.id = t.id AND t.cls = $cls".
@@ -65,7 +60,6 @@
 		$output = formatJSON($res);
 	}
 	elseif (($act == "radio") && ($cmp != "") && ($cls != "")) {
-
 		/* get radios for class in competition*/
 		$sql = "SELECT leg, ctrl, mopControl.name FROM mopClassControl, mopControl ".
          	   "WHERE mopControl.cid='$cmp' AND mopClassControl.cid='$cmp' ".
@@ -80,6 +74,14 @@
 		//$output = $sql;
 	}
 	elseif (($act == "result") && ($cmp != "") && ($cls != "")) {
+		/* Get results for class in competition*/
+		$results = array();
+	  $sql = "SELECT max(leg) FROM mopTeamMember tm, mopTeam t WHERE tm.cid = '$cmp' AND t.cid = '$cmp' AND tm.id = t.id AND t.cls = $cls";
+		$logsql = "$logsql \n ---- SQL --- $sql";
+  	$res = mysql_query($sql);
+    $r = mysql_fetch_array($res);
+	  $numlegs = $r[0];
+
 		// Get the name of the db with details and the zerotime
 		$sql = 	"SELECT cmp.name AS name, oev.name as oevname, oev.nameId AS nameId, oev.zerotime AS zerotime ".
 						"FROM mopCompetition cmp, oEvent oev ".
@@ -102,14 +104,6 @@
 		if ($database=="missing") {
 			die("Fejl");
 		}
-
-		/* Get results for class in competition*/
-		$results = array();
-	  $sql = "SELECT max(leg) FROM mopTeamMember tm, mopTeam t WHERE tm.cid = '$cmp' AND t.cid = '$cmp' AND tm.id = t.id AND t.cls = $cls";
-		$logsql = "$logsql \n ---- SQL --- $sql";
-  	$res = mysql_query($sql);
-    $r = mysql_fetch_array($res);
-	  $numlegs = $r[0];
 
 		$ord=0;
 			if ($numlegs > 1) {
@@ -484,13 +478,20 @@
 	elseif (($act == "start") && ($cmp != "") && ($cls != "")) {
 // *** STARTLISTE
 
-		// Read from the MySQL database
-		// Get the name of the db with all details
-		$sql = "SELECT cmp.name AS name, oev.name as oevname, oev.nameId AS nameId, oev.zerotime AS zerotime ".
-			"FROM mopCompetition cmp, oEvent oev ".
-			"WHERE cmp.cid = '$cmp' ".
-			"AND cmp.name=oev.name ";
-			$logsql = "$logsql \n ---- SQL --- $sql";
+		/* Check number of legs in competition */
+		$results = array();
+		$sql = "SELECT max(leg) FROM mopTeamMember tm, mopTeam t WHERE tm.cid = '$cmp' AND t.cid = '$cmp' AND tm.id = t.id AND t.cls = $cls";
+		$res = mysql_query($sql);
+  	$r = mysql_fetch_array($res);
+    $numlegs = $r[0];
+
+
+		// Get the name of the db with details and the zerotime
+		$sql = 	"SELECT cmp.name AS name, oev.name as oevname, oev.nameId AS nameId, oev.zerotime AS zerotime ".
+						"FROM mopCompetition cmp, oEvent oev ".
+						"WHERE cmp.cid = '$cmp' ".
+						"AND cmp.name=oev.name ";
+						$logsql = "$logsql \n ---- SQL --- $sql";
 
 		$res = mysql_query($sql);
 		$results = $res;
@@ -507,13 +508,6 @@
 		if ($database=="missing") {
 			die("Fejl");
 		}
-
-		/* Check number of legs in competition */
-		$results = array();
-		$sql = "SELECT max(leg) FROM mopTeamMember tm, mopTeam t WHERE tm.cid = '$cmp' AND t.cid = '$cmp' AND tm.id = t.id AND t.cls = $cls";
-		$res = mysql_query($sql);
-  	$r = mysql_fetch_array($res);
-    $numlegs = $r[0];
 
 		$ord=0;
     if ($numlegs >= 1) {
@@ -551,33 +545,9 @@
 				/* team details */
     		$rrow = array();
 
-				// Bib/brystnummer
-				$bib="";
-				$sql = "SELECT Bib As Bib ".
-							"FROM ".$database.".oTeam ".
-							"WHERE Id=".$r['id']." ";
-							$logsql = "$logsql \n ---- SQL --- $sql<br>";
-
-				$resx = mysql_query($sql);
-				While ($rowx = mysql_fetch_assoc($resx)) {
-											$bib = $rowx['Bib'];
-				}
-    		$rrow['startnumber'] = $bib;
+     		$rrow['startnumber'] = getBibTeam($r['id'], $database);
 				$rrow['club'] = $r['team'];
-
-				// Klub
-				$club="";
-				$sql = "SELECT Name As Name ".
-							"FROM ".$database.".oClub ".
-							"WHERE Id=".$r['org']." ";
-							$logsql = "$logsql \n ---- SQL --- $sql<br>";
-
-				$resx = mysql_query($sql);
-				While ($rowx = mysql_fetch_assoc($resx)) {
-											$club = $rowx['Name'];
-				}
-				$rrow['team'] = $club;
-
+				$rrow['team'] = getClub($r['org'], $database);
     		$t = $r['starttime']/10;
     		if ($t >= 86400)
     			$t -= 86400;
@@ -639,19 +609,7 @@
 
 					/* team details */
 	    			$rrow = array();
-
-						// Bib/brystnummer
-						$bib="";
-						$sql = 	"SELECT Bib As Bib ".
-							 			"FROM ".$database.".oRunner ".
-							 			"WHERE Id=".$r['id']." ";
-										$logsql = "$logsql \n ---- SQL --- $sql<br>";
-
-						$resx = mysql_query($sql);
-						While ($rowx = mysql_fetch_assoc($resx)) {
-										 			$bib = $rowx['Bib'];
-						}
-	    			$rrow['startnumber'] = $bib;
+	    			$rrow['startnumber'] = getBib($r['id'], $database);
 	    			$rrow['name'] = $r['name'];
 	    			$rrow['team'] = $r['team'];
 
@@ -702,6 +660,45 @@ function getmopTeam($id, $cmp) {
 								$name = $row['Name'];
 	}
 	return $name;
+}
+
+function getBib($id, $database) {
+	// Bib/brystnummer
+	$bib="";
+	$sql = 	"SELECT Bib As Bib ".
+					"FROM ".$database.".oRunner ".
+					"WHERE Id= '$id' ";
+	$resx = mysql_query($sql);
+	While ($rowx = mysql_fetch_assoc($resx)) {
+								$bib = $rowx['Bib'];
+	}
+	return $bib;
+}
+
+function getBibTeam($id, $database) {
+	// Bib/brystnummer
+	$bib="";
+	$sql = 	"SELECT Bib As Bib ".
+					"FROM ".$database.".oTeam ".
+					"WHERE Id= '$id' ";
+	$resx = mysql_query($sql);
+	While ($rowx = mysql_fetch_assoc($resx)) {
+								$bib = $rowx['Bib'];
+	}
+	return $bib;
+}
+
+function getClub($org, $database) {
+	// Klub
+	$club="";
+	$sql = "SELECT Name As Name ".
+				"FROM ".$database.".oClub ".
+				"WHERE Id= '$org' ";
+	$resx = mysql_query($sql);
+	While ($rowx = mysql_fetch_assoc($resx)) {
+								$club = $rowx['Name'];
+	}
+	return $club;
 }
 
 ?>
