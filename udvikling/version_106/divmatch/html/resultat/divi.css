@@ -1,0 +1,15 @@
+@media print, screen {
+
+table, h3, body {font-family:Courier New;font-size: 16pt;}
+thead { display:table-header-group;}
+tbody { display:table-row-group;} 
+
+th, td {padding: 4px;}
+h3 {font-size: larger;} 
+tr {page-break-inside: avoid;} 
+.point {font-size:16pt}
+.page-break {page-break-before:always;}
+
+.matcher {display:none}
+}
+
