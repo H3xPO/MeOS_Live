@@ -1,4 +1,4 @@
-******************************************************************************************************
+﻿******************************************************************************************************
 * Henrik Poulsen, Malthe Poulsen
 * FIF Hillerød Orientering
 *
@@ -52,7 +52,7 @@ Installation af lokal webserver (Apache) og MySQL database:
       For at få dannet de tabeller som programmerne der viser startlister og resultatlister bruger, skal der køres en fil der danner disse tabeller.
       Filen ligger i '..\meos_mop' og hedder setup.php eller _setup.php.
 
-      Når denne fil er kort korrekt, vil der været oprettet nogle tabeller med navnet 'mop%' i databasen 'meosmain'.
+      Når denne fil er kørt korrekt, vil der været oprettet nogle tabeller med navnet 'mop%' i databasen 'meosmain'.
 
       Herefter kan der køres autofunktioner med Resultater online fra MeOS.
 

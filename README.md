@@ -31,7 +31,7 @@ data i MeOS løbsdatabasen (MySQL) og præsenterer dem i en browser.
 6.  Divisionsmatch - resultat
     <br>Skærmen viser alle resultater fra een match
 
-## PRODUKTION/VERSION_105
+## UDVIKLING/VERSION_110
 Baseret på afvikling fra XAMPP
 
 Beskrivelse af webserver/MySQL setup i /webserver/readme.txt
@@ -52,7 +52,6 @@ Eksisterende startliste udvides med følgende:
 2.  Rullende startlister (indv. og stafet)
     <br>Disse indeholder nu også et evt. startnummer
 3.  Rullende resultater
-
 
 ## PRODUKTION/VERSION_100
 Første version i GitHub, porteret fra ZIP og Dropbox deling.
