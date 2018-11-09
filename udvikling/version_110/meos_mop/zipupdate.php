@@ -1,6 +1,6 @@
 <?php
   /*
-  Copyright 2013 Melin Software HB
+  Copyright 2014-2018 Melin Software HB
   
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
   */
 
 include_once("functions.php");
-ConnectToDB();
+$link = ConnectToDB();
 
 // Extract headers
 $password = '';
@@ -41,10 +41,9 @@ $data = file_get_contents("php://input");
 if ($data[0] == 'P') { //Zip starts with 'PK'
   $fn = tempnam('/tmp', 'meos');
   if ($fn) {
-      $f = fopen ($fn, 'wb');      
-      fwrite($f, $data);
-      $zip = zip_open($fn);    
-      unlink ($fn);  // even if fopen failed, because tempnam created the file
+    $f = @fopen($fn, 'wb');      
+    @fwrite($f, $data);
+    $zip = @zip_open($fn);     
   }
     
   if ($zip) {
@@ -55,6 +54,7 @@ if ($data[0] == 'P') { //Zip starts with 'PK'
     zip_close($zip);
   }
   @fclose($f);
+  @unlink($fn);  // even if fopen failed, because tempnam created the file
   
   if (!isset($update))
     returnStatus('ERROR');
@@ -70,17 +70,17 @@ else if ($update->getName() != "MOPDiff")
   
 foreach ($update->children() as $d) {
   if ($d->getName() == "cmp")
-    processCompetitor($cmpId, $d);
+    processCompetitor($link, $cmpId, $d);
   else  if ($d->getName() == "tm")
-    processTeam($cmpId, $d);
+    processTeam($link, $cmpId, $d);
   else if ($d->getName() == "cls")
-    processClass($cmpId, $d);
+    processClass($link, $cmpId, $d);
   else if ($d->getName() == "org")
-    processOrganization($cmpId, $d);
+    processOrganization($link, $cmpId, $d);
   else if ($d->getName() == "ctrl")
-    processControl($cmpId, $d);
+    processControl($link, $cmpId, $d);
   else if ($d->getName() == "competition")
-    processCompetition($cmpId, $d);    
+    processCompetition($link, $cmpId, $d);    
 }
 
 returnStatus('OK');

@@ -20,7 +20,7 @@
 			?>
 			<h1>Din IP adresse <?php echo $ip; ?></h1>
 			<p>
-			<h1>Funktioner i version 1.06</h1>
+			<h1>Funktioner i version 1.07</h1>
 			<p>
 
 				<table cellpadding="5" style="border:2px solid white;">

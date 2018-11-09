@@ -20,6 +20,8 @@
 
       Date:
       November 2013
+      Updated:
+      February 2018
     </xsd:documentation>
   </xsd:annotation>
   <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
@@ -150,7 +152,15 @@
             </xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
-        
+
+        <xsd:attribute name="crs" type="xsd:string" use="optional">
+          <xsd:annotation>
+            <xsd:documentation>
+              List of courses used by the class separated by comma (,).
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+
         <xsd:attribute name="ord" type="xsd:integer" use="optional">
           <xsd:annotation>
             <xsd:documentation>
@@ -232,6 +242,14 @@
           </xsd:annotation>
         </xsd:attribute>
         
+        <xsd:attribute name="bib" type="xsd:string" use="optional">
+          <xsd:annotation>
+            <xsd:documentation>
+              Bib text, if defined
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -277,6 +295,13 @@
           Unique identifier of the competitor.
         </xsd:documentation>
         </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="crs" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation>
+          Course id.
+        </xsd:documentation>
+      </xsd:annotation>
     </xsd:attribute>
   </xsd:complexType>
 
