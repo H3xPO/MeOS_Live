@@ -80,4 +80,6 @@
 					print "<br>   MySQL database=".MYSQL_HOSTNAME;
 					print "<br>   Webserver =".$ip;
 				}
+
+				print "<br>PHP version " . phpversion();
 			?>
