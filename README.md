@@ -30,8 +30,13 @@ data i MeOS løbsdatabasen (MySQL) og præsenterer dem i en browser.
     <br>Skærmen opdeles i 2-3 kolonner hvor der i hver kolonne vises det samlede matchresultat
 6.  Divisionsmatch - resultat
     <br>Skærmen viser alle resultater fra een match
-
-## UDVIKLING/VERSION_110
+	
+Specielt for individuelle resultater vises følgende:
+CHK		Når løberen har stemplet CHECK (såfremt denne CHECK er en radiopost)
+MÅL		Når løberen har stemplet MÅL (såfremt denne enhed er en radiopost)
+		Der beregnes en foreløbig tid baseret på tid for målstempling-starttid
+	
+## PRODUKTION/VERSION_110
 Baseret på afvikling fra XAMPP
 
 Beskrivelse af webserver/MySQL setup i /webserver/readme.txt
@@ -39,19 +44,7 @@ Beskrivelse af webserver/MySQL setup i /webserver/readme.txt
 Ny INDEX.PHP lavet
 
 ## ToDo
-Eksisterende startliste udvides med følgende:
-1.  Placering viser følgende:
-    <br>Nummer      = placering efter aflæsning
-    <br>Nummer+gul  = midlertidig placering efter mål inden aflæsning
-    <br>Sort klat   = løberene har stemplet check
-    <br>Tid         = Starttid tildelt eller fra stempling af enhed (radio)
-2.  Radio fjernes
-3.  Tid skal beregnes fra starttid (målstemplinger uden startid vises ikke)
 
-#### Ændrede/tilføjede features
-2.  Rullende startlister (indv. og stafet)
-    <br>Disse indeholder nu også et evt. startnummer
-3.  Rullende resultater
 
 ## PRODUKTION/VERSION_100
 Første version i GitHub, porteret fra ZIP og Dropbox deling.
