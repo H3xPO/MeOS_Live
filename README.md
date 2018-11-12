@@ -32,8 +32,8 @@ data i MeOS løbsdatabasen (MySQL) og præsenterer dem i en browser.
     <br>Skærmen viser alle resultater fra een match
 	
 Specielt for individuelle resultater vises følgende i kolonnen 'Placering':
-1.  CHK		Når løberen har stemplet CHECK (såfremt denne CHECK er en radiopost)
-2.  MÅL		Når løberen har stemplet MÅL (såfremt denne enhed er en radiopost)
+1.  <img src="https://github.com/P0lle/MeOS_Live/blob/master/udvikling/version_110/check.png" width="16">		Når løberen har stemplet CHECK (såfremt denne CHECK er en radiopost)
+2.  <img src="https://github.com/P0lle/MeOS_Live/blob/master/udvikling/version_110/finish.png" width="16">		Når løberen har stemplet MÅL (såfremt denne enhed er en radiopost)
 		<br>Der beregnes en foreløbig tid baseret på tid for målstempling-starttid
 	
 ## PRODUKTION/VERSION_110
