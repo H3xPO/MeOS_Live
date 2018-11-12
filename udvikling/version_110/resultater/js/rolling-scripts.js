@@ -209,7 +209,12 @@ function formatResult(cls, clsname, result) {
     		{
 				$.each(result[idx], function(jdx, cell){
 					a = (jdx==1 || jdx == 2) ? 'left' : 'right';
-					html += "<td style='padding: 2px;' valign='top' align='"+ a +"'>" + htmlEncode(cell) + "</td>";
+					if (jdx==0) {
+						html += "<td style='padding: 2px;' valign='top' align='"+ a +"'>" + cell + "</td>";
+					} else {
+						html += "<td style='padding: 2px;' valign='top' align='"+ a +"'>" + htmlEncode(cell) + "</td>";
+					}
+					//html += "<td style='padding: 2px;' valign='top' align='"+ a +"'>" + htmlEncode(cell) + "</td>";
 				});
     		}
 			html += "</tr>"

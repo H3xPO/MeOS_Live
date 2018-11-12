@@ -945,11 +945,11 @@ function calculateResult($res, $link, $database) {
 			$lastpunch = getPunch($link, getCardNo($link, $r['id'], $database), $database);
 			if ($lastpunch>0) {
 				if ($lastpunch==3) {
-					$row['place'] = "<img src='check.png' width='16'>";
+					$row['place'] = "<img src='/check.png' width='16'>";
 					//$row['place'] = "CHK";
 				}
-				if ($lastpunch!=3 and $lastpunch<31) {
-					$row['place'] = "<img src='finish.png' width='16'>";
+				elseif ($lastpunch<31) {
+					$row['place'] = "<img src='/finish.png' width='16'>";
 					//$row['place'] = "MÅL";
 					$row['time'] = sprintf("%d:%02d:%02d", $t/3600, ($t/60)%60, $t%60);
 				}
