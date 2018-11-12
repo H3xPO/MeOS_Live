@@ -309,22 +309,25 @@
 									   "FROM mopCompetitor cmp LEFT JOIN mopOrganization AS org ON cmp.org = org.id AND cmp.cid = org.cid ".
 									   "WHERE cmp.cls = '$cls' ".
 									   "AND cmp.cid = '$cmp' AND cmp.stat>0 ORDER BY cmp.stat, cmp.rt ASC, cmp.id";
-// HP 11.11.2018: Ændret til at bruge oRunner således at alle vises på resultatlisten
-							 $sql = "SELECT cmp.Id AS id, cmp.Name AS name, org.name AS team, (cmp.FinishTime-cmp.StartTime)*10 AS time, cmp.status AS status ".
-										   "FROM ".$database.".oRunner cmp LEFT JOIN ".$database.".oClub org ON cmp.Club = org.Id ".
-										   "WHERE cmp.Class = '$cls' ".
-										   "AND cmp.status=1 ".
-											 "UNION ".
-							 			 	 "SELECT cmp.Id AS id, cmp.Name AS name, org.name AS team, if(cmp.FinishTime-cmp.StartTime<0, 0, (cmp.FinishTime-cmp.StartTime)*10) AS time, cmp.status AS status ".
-										   "FROM ".$database.".oRunner cmp LEFT JOIN ".$database.".oClub org ON cmp.Club = org.Id ".
-										   "WHERE cmp.Class = '$cls' ".
-										   "AND cmp.status=0 ".
-											 "UNION ".
-											 "SELECT cmp.Id AS id, cmp.Name AS name, org.name AS team, (cmp.FinishTime-cmp.StartTime)*10 AS time, cmp.status AS status ".
-											 "FROM ".$database.".oRunner AS cmp LEFT JOIN ".$database.".oClub AS org ON cmp.Club = org.Id ".
-											 "WHERE cmp.Class = '$cls' ".
-											 "AND cmp.status>1 ".
-											 "ORDER BY Status desc, Time asc";
+
+										 if ($database != "missing") {
+											 // HP 11.11.2018: Ændret til at bruge oRunner således at alle vises på resultatlisten
+											 $sql = "SELECT cmp.Id AS id, cmp.Name AS name, org.name AS team, (cmp.FinishTime-cmp.StartTime)*10 AS time, cmp.status AS status ".
+														   "FROM ".$database.".oRunner cmp LEFT JOIN ".$database.".oClub org ON cmp.Club = org.Id ".
+														   "WHERE cmp.Class = '$cls' ".
+														   "AND cmp.status=1 ".
+															 "UNION ".
+											 			 	 "SELECT cmp.Id AS id, cmp.Name AS name, org.name AS team, if(cmp.FinishTime-cmp.StartTime<0, 0, (cmp.FinishTime-cmp.StartTime)*10) AS time, cmp.status AS status ".
+														   "FROM ".$database.".oRunner cmp LEFT JOIN ".$database.".oClub org ON cmp.Club = org.Id ".
+														   "WHERE cmp.Class = '$cls' ".
+														   "AND cmp.status=0 ".
+															 "UNION ".
+															 "SELECT cmp.Id AS id, cmp.Name AS name, org.name AS team, (cmp.FinishTime-cmp.StartTime)*10 AS time, cmp.status AS status ".
+															 "FROM ".$database.".oRunner AS cmp LEFT JOIN ".$database.".oClub AS org ON cmp.Club = org.Id ".
+															 "WHERE cmp.Class = '$cls' ".
+															 "AND cmp.status>1 ".
+															 "ORDER BY Status desc, Time asc";
+										 }
 						}
 						$rname = $lang["finish"];
 					}
@@ -773,7 +776,8 @@ function getPunch($link, $cardno, $database) {
     if ($database != "missing") {
         $sql = "SELECT Type As Type ".
                     "FROM ".$database.".oPunch ".
-                    "WHERE CardNo= '$cardno' ";
+                    "WHERE CardNo= '$cardno' ".
+										"ORDER BY Modified ";
         $resx = $link->query($sql);
         While ($rowx = $resx->fetch_assoc()) {
             $punch = $rowx['Type'];
@@ -941,10 +945,12 @@ function calculateResult($res, $link, $database) {
 			$lastpunch = getPunch($link, getCardNo($link, $r['id'], $database), $database);
 			if ($lastpunch>0) {
 				if ($lastpunch==3) {
-					$row['place'] = "CHK";
+					$row['place'] = "<img src='check.png' width='16'>";
+					//$row['place'] = "CHK";
 				}
 				if ($lastpunch!=3 and $lastpunch<31) {
-					$row['place'] = "MÅL";
+					$row['place'] = "<img src='finish.png' width='16'>";
+					//$row['place'] = "MÅL";
 					$row['time'] = sprintf("%d:%02d:%02d", $t/3600, ($t/60)%60, $t%60);
 				}
 			}
