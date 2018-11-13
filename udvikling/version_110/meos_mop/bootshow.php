@@ -312,21 +312,21 @@
 
 										 if ($database != "missing") {
 											 // HP 11.11.2018: Ændret til at bruge oRunner således at alle vises på resultatlisten
-											 $sql = "SELECT cmp.Id AS id, cmp.Name AS name, org.name AS team, (cmp.FinishTime-cmp.StartTime)*10 AS time, cmp.status AS status ".
+											 $sql = "SELECT cmp.Id AS id, cmp.Name AS name, org.name AS team, (cmp.FinishTime-cmp.StartTime)*10 AS time, cmp.status AS status, cmp.status AS SortStatus, 1 As SortIdx ".
 														   "FROM ".$database.".oRunner cmp LEFT JOIN ".$database.".oClub org ON cmp.Club = org.Id ".
 														   "WHERE cmp.Class = '$cls' ".
-														   "AND cmp.status=1 ".
+														   "AND cmp.status=1 AND cmp.Removed=0 ".
 															 "UNION ".
-											 			 	 "SELECT cmp.Id AS id, cmp.Name AS name, org.name AS team, if(cmp.FinishTime-cmp.StartTime<0, 0, (cmp.FinishTime-cmp.StartTime)*10) AS time, cmp.status AS status ".
+											 			 	 "SELECT cmp.Id AS id, cmp.Name AS name, org.name AS team, if(cmp.FinishTime-cmp.StartTime<0, 0, (cmp.FinishTime-cmp.StartTime)*10) AS time, cmp.status As Status, if(cmp.FinishTime>0, 1, cmp.status) AS SortStatus, if(cmp.FinishTime>0, 1, 9) As SortIdx ".
 														   "FROM ".$database.".oRunner cmp LEFT JOIN ".$database.".oClub org ON cmp.Club = org.Id ".
 														   "WHERE cmp.Class = '$cls' ".
-														   "AND cmp.status=0 ".
+														   "AND cmp.status=0 AND cmp.Removed=0 ".
 															 "UNION ".
-															 "SELECT cmp.Id AS id, cmp.Name AS name, org.name AS team, (cmp.FinishTime-cmp.StartTime)*10 AS time, cmp.status AS status ".
+															 "SELECT cmp.Id AS id, cmp.Name AS name, org.name AS team, (cmp.FinishTime-cmp.StartTime)*10 AS time, cmp.status AS status, cmp.status As SortStatus, 2 As SortIdx ".
 															 "FROM ".$database.".oRunner AS cmp LEFT JOIN ".$database.".oClub AS org ON cmp.Club = org.Id ".
 															 "WHERE cmp.Class = '$cls' ".
-															 "AND cmp.status>1 ".
-															 "ORDER BY Status desc, Time asc";
+															 "AND cmp.status>1 AND cmp.Removed=0 ".
+															 "ORDER BY SortIdx, SortStatus desc, Time asc";
 										 }
 						}
 						$rname = $lang["finish"];
@@ -901,19 +901,24 @@ function calculateResult($res, $link, $database) {
   $totalResult = array();
   $hasTotal = false;
 
+	$changePlace = 0;
+
   while ($r = $res->fetch_assoc()) {
+
     if ($lastTeam == $r['id']) {
       $out[$count]['name'] .= " / " . $r['name'];
       continue;
     }
     else
       $lastTeam = $r['id'];
+
     $count++;
     $t = $r['time']/10;
     if ($bestTime == -1)
       $bestTime = $t;
     if ($lastTime != $t) {
-      $place = $count;
+			$place = $count;
+			$place = $place-$changePlace;
       $lastTime = $t;
     }
 
@@ -926,6 +931,7 @@ function calculateResult($res, $link, $database) {
         $row['time'] = sprintf("%d:%02d:%02d", $t/3600, ($t/60)%60, $t%60);
       else
         $row['time'] = "OK"; // No timing
+			// Tid efter
       $after = $t - $bestTime;
       if ($after > 3600)
         $row['after'] = sprintf("+%d:%02d:%02d", $after/3600, ($after/60)%60, $after%60);
@@ -939,6 +945,7 @@ function calculateResult($res, $link, $database) {
       $row['name'] = $r['name'];
       $row['team'] = $r['team'];
       $row['time'] = getStatusString($r['status']);
+      $row['after'] = "";
 
 			// Her vises status - check, remote mål (tid er baseret på radio aflæst måltid)
 			$lastpunch = 0;
@@ -949,12 +956,20 @@ function calculateResult($res, $link, $database) {
 					//$row['place'] = "CHK";
 				}
 				elseif ($lastpunch<31) {
+					$changePlace++;
 					$row['place'] = "<img src='/finish.png' width='16'>";
 					//$row['place'] = "MÅL";
-					$row['time'] = sprintf("%d:%02d:%02d", $t/3600, ($t/60)%60, $t%60);
+  				$row['time'] = sprintf("%d:%02d:%02d", $t/3600, ($t/60)%60, $t%60);
+					// Tid efter
+		      $after = $t - $bestTime;
+		      if ($after > 3600)
+		        $row['after'] = sprintf("+%d:%02d:%02d", $after/3600, ($after/60)%60, $after%60);
+		      elseif ($after > 0)
+		        $row['after'] = sprintf("+%d:%02d", ($after/60)%60, $after%60);
+		      else
+		        $row['after'] = "";
 				}
 			}
-      $row['after'] = "";
     }
 
     if (isset($r['tottime'])) {
@@ -975,7 +990,12 @@ function calculateResult($res, $link, $database) {
         $totalResult[$count] = 10000000 * 100 * ($r['totstat'] == 0 ? 27 : $r['totstat']);
     }
 		$row['id'] = $lastTeam;
-    $out[$count] = $row;
+
+		// Viser ikke linier hvor plac='-' og time='--'
+		if (($row['place']=="-") && ($row['time']=="--"))
+			;
+		else
+    	$out[$count] = $row;
   }
 
   if ($hasTotal) {
