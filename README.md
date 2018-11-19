@@ -1,5 +1,5 @@
 # MeOS-Live
-TEST
+
 Dette er en samling af forskellige løsninger til visning af resultater m.v.
 fra orienteringsløb afviklet med løbsprogrammet MeOS.
 
