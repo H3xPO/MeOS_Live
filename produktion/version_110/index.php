@@ -67,7 +67,7 @@
 			<?php
 				// Test config
 				include_once('meos_mop/config_da.php');
-				print "<br>Læser MySQL konfiguration fra: " . $_SERVER["DOCUMENT_ROOT"] . 'config_da.php';
+				print "<br>Læser MySQL konfiguration fra: " . $_SERVER["DOCUMENT_ROOT"] . '/meos_mop/config_da.php';
 				if (strlen(MYSQL_HOSTNAME)>1) {
 					print "<br>MySQL database server=".MYSQL_HOSTNAME;
 				} else {
