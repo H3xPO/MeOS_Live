@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings>
+  <Server Displays="2">http://192.168.1.111:2009/meos</Server>
+  <Display Name="disp1">class1, class2, class3, class4</Display>
+  <Display Name="disp2">class10, class20, class30, class40</Display>
+</Settings>
