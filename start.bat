@@ -2,9 +2,8 @@
 ECHO:
 setlocal
 for /f "usebackq tokens=2 delims=:" %%f in (`ipconfig ^| findstr /c:"IPv4 Address"`) do set ip0=%%f
+for /f "tokens=* delims= " %%a in ("%ip0%") do set ip=%%a
 set thisFolder=%~dp0
-set /p ip=IP adressen for denne pc er %ip0%, angiv denne eller tryk [Enter] for at bruge 'localhost':
-IF "%ip%" == "" set ip=localhost
 set webFolder=%thisFolder%udvikling\version_200
 call set webFolder=%%webFolder:IISExpress=Web%%
 cd "%thisFolder%"IISExpress
