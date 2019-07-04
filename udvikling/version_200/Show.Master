@@ -1,0 +1,19 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Show.master.vb" Inherits="MeOS_Live.Show" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>MeOS - Live</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body style="margin: 16px;">
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="main" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

@@ -9,5 +9,5 @@ call set webFolder=%%webFolder:IISExpress=Web%%
 cd "%thisFolder%"IISExpress
 start iisexpress.exe /config:"%thisFolder%IISExpress\AppServer\applicationhost.config"
 timeout 1
-start http://%ip%:8181/Default.aspx
+start http://%ip%:8181/
 endlocal
