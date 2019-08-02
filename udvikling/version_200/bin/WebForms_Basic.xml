@@ -46,27 +46,72 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:MeOS_Live._Default._dlEvent">
+<summary>
+dlEvent control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._tbEventPw">
+<summary>
+tbEventPw control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._btOpen">
+<summary>
+btOpen control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._tbName">
+<summary>
+tbName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._tbPw">
+<summary>
+tbPw control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._btCreate">
+<summary>
+btCreate control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._dlDisplays">
+<summary>
+dlDisplays control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:MeOS_Live._Default._tbMeOSSrv">
 <summary>
 tbMeOSSrv control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:MeOS_Live._Default._lServerStatus">
-<summary>
-lServerStatus control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:MeOS_Live._Default._tbDisplays">
-<summary>
-tbDisplays control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -91,72 +136,288 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:MeOS_Live._Default._btCompetition">
+<member name="F:MeOS_Live._Default._lEventName">
 <summary>
-btCompetition control.
+lEventName control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:MeOS_Live._Default._btClass">
+<member name="F:MeOS_Live._Default._imgServerStatus">
 <summary>
-btClass control.
+imgServerStatus control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:MeOS_Live._Default._btControl">
+<member name="F:MeOS_Live._Default._tbNewsText">
 <summary>
-btControl control.
+tbNewsText control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:MeOS_Live._Default._btCompetitor">
+<member name="F:MeOS_Live._Default._rbNewsColor">
 <summary>
-btCompetitor control.
+rbNewsColor control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:MeOS_Live._Default._btOrganization">
+<member name="F:MeOS_Live._Default._dlDisplay">
 <summary>
-btOrganization control.
+dlDisplay control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:MeOS_Live._Default._btResult">
+<member name="F:MeOS_Live._Default._btShow">
 <summary>
-btResult control.
+btShow control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:MeOS_Live._Default._lResultat">
+<member name="F:MeOS_Live._Default._lSelectedDisplay">
 <summary>
-lResultat control.
+lSelectedDisplay control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:MeOS_Live.Show1._ltest">
+<member name="F:MeOS_Live._Default._dlColums">
 <summary>
-ltest control.
+dlColums control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._btDisplaySave">
+<summary>
+btDisplaySave control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._ColumView">
+<summary>
+ColumView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._ColumView1">
+<summary>
+ColumView1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._ColumnView1_dlContent1">
+<summary>
+ColumnView1_dlContent1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._ColumnView1_dlSize1">
+<summary>
+ColumnView1_dlSize1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._ColumView1_cbClasses1">
+<summary>
+ColumView1_cbClasses1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._ColumView2">
+<summary>
+ColumView2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._ColumnView2_dlContent1">
+<summary>
+ColumnView2_dlContent1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._ColumnView2_dlContent2">
+<summary>
+ColumnView2_dlContent2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._ColumnView2_dlSize1">
+<summary>
+ColumnView2_dlSize1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._ColumnView2_dlSize2">
+<summary>
+ColumnView2_dlSize2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._ColumView2_cbClasses1">
+<summary>
+ColumView2_cbClasses1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._ColumView2_cbClasses2">
+<summary>
+ColumView2_cbClasses2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._ColumView3">
+<summary>
+ColumView3 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._ColumnView3_dlContent1">
+<summary>
+ColumnView3_dlContent1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._ColumnView3_dlContent2">
+<summary>
+ColumnView3_dlContent2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._ColumnView3_dlContent3">
+<summary>
+ColumnView3_dlContent3 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._ColumnView3_dlSize1">
+<summary>
+ColumnView3_dlSize1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._ColumnView3_dlSize2">
+<summary>
+ColumnView3_dlSize2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._ColumnView3_dlSize3">
+<summary>
+ColumnView3_dlSize3 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._ColumView3_cbClasses1">
+<summary>
+ColumView3_cbClasses1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._ColumView3_cbClasses2">
+<summary>
+ColumView3_cbClasses2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live._Default._ColumView3_cbClasses3">
+<summary>
+ColumView3_cbClasses3 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live.Show1._lShowCol">
+<summary>
+lShowCol control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -184,6 +445,42 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:MeOS_Live.Show._main">
 <summary>
 main control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live.Show_1._btSetup">
+<summary>
+btSetup control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live.Show_1._lDisplayID">
+<summary>
+lDisplayID control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live.Show_1._lClassList">
+<summary>
+lClassList control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:MeOS_Live.Show_1._lResultList">
+<summary>
+lResultList control.
 </summary>
 <remarks>
 Auto-generated field.
