@@ -7,7 +7,8 @@ Ideen er at disse resultater vises på en større skærm på stævnepladsen, så
 at startlister og resultatformidling bliver elektronisk.
 
 #### Gældende for version 2.00 og senere - opdateret 01.07.2019
-Udviklingen af version 2.00 er påbegyndt. Den største ændring er skiftet fra PHP til ASP.NET, samtidig med at der ikke længere læses direkte fra MeOS løbsdatabasen. Istedet benyttes den indbyggede 'Informations Server' i MeOS, der via MeOS REST API giver adgang til løbsdata.
+Udviklingen af version 2.00 er påbegyndt. Den største ændring er skiftet fra PHP til ASP.NET, samtidig med at der ikke længere læses direkte fra MeOS løbsdatabasen. Istedet benyttes den indbyggede 'Informations Server' i MeOS, der via REST API giver adgang til løbsdata.
+Hent seneste version fra Install
 
 #### Gældende for versioner tidligere end 2.00
 Overordnet er løsningen baseret på PHP sider placeret på en webserver. Disse sider henter
